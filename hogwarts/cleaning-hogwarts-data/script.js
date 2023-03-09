@@ -5,6 +5,7 @@ const bloodURL = "https://petlatkea.dk/2021/hogwarts/families.json";
 let allStudents = [];
 let grawpList;
 let bloodList;
+let hackedArray = [];
 
 //HOUSE COUNTERS
 let gryfNum, huffNum, raveNum, slytNum;
@@ -42,6 +43,7 @@ function addDocumentListeners() {
     option.addEventListener("click", selectSorting);
   });
   document.querySelector(".span__direction").textContent = `${settings.sortDir.charAt(0).toUpperCase()}${settings.sortDir.slice(1).toLowerCase()}`;
+  document.addEventListener("keydown", initHacked);
 }
 
 // LISTEN TO WINDOW REZISE
@@ -388,4 +390,54 @@ function buildNewList() {
 
   // displays currentList
   displayCleanStudentList(currentList);
+}
+
+function initHacked(event) {
+  if (hackedArray.length === 0 && event.key === "a") {
+    console.log("A...");
+    hackedArray.push(event.key);
+    // console.log(hackedArray);
+  } else if (hackedArray.length === 1 && hackedArray[0] === "a" && event.key === "l") {
+    console.log("L...");
+    hackedArray.push(event.key);
+    // console.log(hackedArray);
+  } else if (hackedArray.length === 2 && hackedArray[1] === "l" && event.key === "o") {
+    console.log("O...");
+    hackedArray.push(event.key);
+    // console.log(hackedArray);
+  } else if (hackedArray.length === 3 && hackedArray[2] === "o" && event.key === "h") {
+    console.log("H...");
+    hackedArray.push(event.key);
+    // console.log(hackedArray);
+  } else if (hackedArray.length === 4 && hackedArray[3] === "h" && event.key === "o") {
+    console.log("O...");
+    hackedArray.push(event.key);
+    // console.log(hackedArray);
+  } else if (hackedArray.length === 5 && hackedArray[4] === "o" && event.key === "m") {
+    console.log("M...");
+    hackedArray.push(event.key);
+    // console.log(hackedArray);
+  } else if (hackedArray.length === 6 && hackedArray[5] === "m" && event.key === "o") {
+    console.log("O...");
+    hackedArray.push(event.key);
+    // console.log(hackedArray);
+  } else if (hackedArray.length === 7 && hackedArray[6] === "o" && event.key === "r") {
+    console.log("R...");
+    hackedArray.push(event.key);
+    // console.log(hackedArray);
+  } else if (hackedArray.length === 8 && hackedArray[7] === "r" && event.key === "a") {
+    console.log("A!");
+    console.log("ALOHOMORA HAS BEEN CASTED");
+    hackedArray.push(event.key);
+    xXHACKEDXx();
+  } else {
+    // console.log("Not pressed correct order :(");
+    hackedArray = [];
+  }
+}
+
+function xXHACKEDXx() {
+  console.log("YOU HAVE BEEN HACKED BROOO");
+  hackedArray = [];
+  document.removeEventListener("keydown", initHacked);
 }

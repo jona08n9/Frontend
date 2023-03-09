@@ -386,7 +386,7 @@ input:checked + .slider:before {
   height: 70vh;
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 
 #popUp .close {
@@ -462,6 +462,11 @@ input:checked + .slider:before {
     justify-content: flex-start;
     flex-direction: row; */
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #popUp article {
+    grid-template-rows: none;
     grid-template-columns: repeat(2, 1fr);
   }
 }
