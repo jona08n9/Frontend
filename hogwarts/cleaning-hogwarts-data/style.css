@@ -377,18 +377,6 @@ input:checked + .slider:before {
   align-items: center;
 }
 
-#popUp article {
-  position: relative;
-  border: 2px solid rgb(68, 68, 68, 0.8);
-  background: url("images/paper_texture.png");
-  background-size: cover;
-  width: 70vw;
-  height: 70vh;
-  padding: 10px;
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-}
-
 #popUp .close {
   position: absolute;
   top: -20px;
@@ -400,16 +388,72 @@ input:checked + .slider:before {
   padding: 5px 12px;
   border-radius: 50%;
 }
+#popUp article {
+  position: relative;
+  border: 2px solid rgb(68, 68, 68, 0.8);
+  background: url("images/paper_texture.png");
+  background-size: cover;
+  width: 80vw;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
 
 .popImages {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
 }
 .popImages img {
-  width: 100px;
+  width: 150px;
   height: auto;
+}
+#popUp h2 {
+  text-align: center;
+}
+
+.pop-names p,
+.pop-tasks p {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-inline: 10px 0;
+  font-weight: 600;
+}
+
+.pop-names span,
+.pop-tasks span {
+  font-weight: 400;
+}
+
+#popUp .expelled_switch {
+  width: 40px;
+  height: 20px;
+}
+
+#popUp .slider:before {
+  height: 18px;
+  width: 18px;
+  left: 1px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+#popUp input:checked + .slider {
+  background-color: #0ea531;
+}
+
+#popUp input:focus + .slider {
+  box-shadow: 0 0 1px #0ea531;
+}
+
+#popUp input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
 }
 
 @media screen and (width>500px) {
@@ -457,10 +501,6 @@ input:checked + .slider:before {
   }
 
   #student-houses__container {
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    flex-direction: row; */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
@@ -468,6 +508,18 @@ input:checked + .slider:before {
   #popUp article {
     grid-template-rows: none;
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  #popUp h2 {
+    text-align: left;
+    padding-inline: 10px 0;
+  }
+
+  .popImages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }
 

@@ -119,16 +119,16 @@
         </div>
       </article>
     </template>
-    <div id="popUp">
+    <div id="popUp" class="hidden">
       <article>
         <div class="close">X</div>
         <div class="popImages">
-          <img src="images/abbott_h.png" alt="" />
-          <img src="images/gryffindor_crest.svg" alt="" />
+          <img class="pop-image-student" src="images/abbott_h.png" alt="" />
+          <img class="pop-image-housecrest" src="images/gryffindor_crest.svg" alt="" />
         </div>
         <div class="popText">
-          <h2 class="pop-fullname">Jonas E. Madvig</h2>
           <div class="pop-names">
+            <h2 class="pop-fullname">Jonas E. Madvig</h2>
             <p>First name: <span class="pop-firstname"></span></p>
             <p>Middle name: <span class="pop-middlename"></span></p>
             <p>Last name: <span class="pop-lastname"></span></p>
@@ -136,11 +136,30 @@
             <p>Blood status: <span class="pop-blood"></span></p>
           </div>
           <div class="pop-tasks">
+            <h2>Student info</h2>
             <div class="pop-prefect__container">
-              <p>Prefect status:: <span class="pop-prefect"></span></p>
+              <p>Prefect status: <span class="pop-prefect"></span></p>
+              <div class="pop-checkbox">
+                <span class="">Lorem ipsum</span>
+                <label class="expelled_switch">
+                  <input name="expell-switch" type="checkbox" class="prefinput" />
+                  <span class="slider"></span>
+                </label>
+                <!-- <label for="prefectInput">Toggle to <span class="prefinput-span">make student prefect</span></label>
+                <input name="prefectInput" class="prefinput" type="checkbox" /> -->
+              </div>
             </div>
             <div class="pop-inquisitorial__container">
               <p>Inquisitorial status: <span class="pop-inquisitorial"></span></p>
+              <div class="pop-checkbox">
+                <span class="">Lorem ipsum</span>
+                <label class="expelled_switch">
+                  <input name="expell-switch" type="checkbox" class="inqinput" />
+                  <span class="slider"></span>
+                </label>
+                <!-- <label for="inquisitorialInput">Toggle to <span class="inqinput-span">make studnet part of inquisitorial squad</span></label>
+                <input name="inquisitorialInput" class="inqinput" type="checkbox" /> -->
+              </div>
             </div>
           </div>
         </div>
