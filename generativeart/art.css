@@ -1,0 +1,27 @@
+#artworks {
+    display: grid;
+    grid: auto / 1fr 1fr 1fr;
+}
+
+.artwork {
+    display: grid;
+    place-items: center;
+    height: 300px;
+}
+
+.box, .circle {
+    grid-area: 1/1;
+    border: 2px solid black;
+    height: 100px;
+    width: 100px;
+}
+
+.circle {
+    border-radius: 100%;
+}
+
+#artwork6 .circle {
+    height: 75px;
+    width: 75px;
+    transform-origin: bottom right;
+}

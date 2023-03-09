@@ -1,0 +1,50 @@
+.barChartContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: end;
+  border: 1px solid rgb(54, 53, 53);
+  max-width: 1200px;
+  height: 70px;
+  overflow-x: hidden;
+  gap: 1px;
+}
+
+.bar {
+  display: inline-block;
+  flex-grow: 1;
+  margin: 0;
+  border: 1px solid rgb(54, 53, 53);
+  border-radius: 1px;
+  background-color: rgb(45, 153, 236);
+}
+
+.animation {
+  animation-name: move;
+  animation-duration: 1000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes move {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.view {
+  padding-block: 8px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+}
+
+.color {
+  display: inline-block;
+  width: 93%;
+  margin-block-start: 5px;
+  height: 10px;
+  background: linear-gradient(90deg, rgba(0, 75, 35, 1) 0%, rgba(204, 255, 51, 1) 100%);
+}

@@ -1,0 +1,34 @@
+article {
+  background: rgb(226, 223, 223);
+  border-radius: 5px;
+  width: 220px;
+  padding: 1%;
+}
+
+article div {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  text-align: start;
+}
+
+#color {
+  align-items: center;
+  column-gap: 10px;
+}
+
+#colorDisplay {
+  height: 200px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+#colorCodes {
+  flex-direction: column;
+  text-align: start;
+  align-items: start;
+}
+
+p {
+  margin-block: 5px;
+}

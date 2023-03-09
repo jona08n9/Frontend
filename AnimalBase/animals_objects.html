@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Animals (objects)</title>
+  </head>
+  <body>
+    <h1>Animals</h1>
+    
+    <table id="list">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- animal template will be copied and inserted here -->
+        
+      </tbody>
+    </table>
+
+    <template id="animal">
+      <tr>
+        <td data-field="name">NAME</td>
+        <td data-field="type">TYPE</td>
+        <td data-field="desc">DESCRIPTION</td>
+        <td data-field="age">AGE</td>
+      </tr>
+    </template>
+    
+    <script src="animals_objects.js"></script>
+  </body>
+</html>

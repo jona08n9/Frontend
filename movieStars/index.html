@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Actors and their movies</h1>
+    <h3>Click on an actors name or use the filter below, to see which movies the actors have starred in.</h3>
+    <nav>
+      <button data-movie="all" class="button all chosen">All movies</button>
+      <button data-movie="Fight Club" class="button fightclub">Fight Club</button>
+      <button data-movie="Goodfellas" class="button goodfellas">Goodfellas</button>
+      <button data-movie="Inception" class="button inception">Inception</button>
+      <button data-movie="Pulp Fiction" class="button pulpfiction">Pulp Fiction</button>
+    </nav>
+    <main></main>
+
+    <section class="pop-op hidden">
+      <article class="pop_container">
+        <div class="pop_close">&#215;</div>
+        <h2>Full name: <span class="pop_actor"></span></h2>
+        <h3>Known from the movie " <span class="pop_movie"></span> "</h3>
+      </article>
+    </section>
+
+    <template>
+      <article>
+        <h2 class="full-name"></h2>
+        <span class="movie"></span>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>

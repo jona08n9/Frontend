@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.typekit.net/lrx0rfs.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Cleaning Hogwarts Data</title>
+  </head>
+  <body>
+    <header id="banner">
+      <img src="images/hogwarts_crest.svg" alt="" id="logo" width="150px" />
+      <h1>Hogwarts Student List</h1>
+    </header>
+    <main>
+      <div class="content_block">
+        <h2>Options</h2>
+        <section id="options">
+          <div class="collapse__mobile">
+            <button class="collapsible hidden"><span>Open Filter options</span><span class="colapseSpan">&#8249;</span></button>
+            <div class="collapse__mobile__content__inner__section">
+              <article id="filter">
+                <h4>Filter list</h4>
+                <select name="filter" id="filter__container" class="filter__select">
+                  <option label="All students" data-type="all" value="all" class="filter_option"></option>
+                  <optgroup label="Houses">
+                    <option label="Gryffindor" data-type="house" value="Gryffindor" class="filter__option"></option>
+                    <option label="Ravenclaw" data-type="house" value="Ravenclaw" class="filter__option"></option>
+                    <option label="Hufflepuff" data-type="house" value="Hufflepuff" class="filter__option"></option>
+                    <option label="Slytherin" data-type="house" value="Slytherin" class="filter__option"></option>
+                  </optgroup>
+                  <optgroup label="Blood type">
+                    <option label="Muggle" data-type="blood" value="Muggle" class="filter__option"></option>
+                    <option label="Halfblood" data-type="blood" value="Half" class="filter__option"></option>
+                    <option label="Pureblood" data-type="blood" value="Pure" class="filter__option"></option>
+                  </optgroup>
+                  <optgroup label="Prefect">
+                    <option label="Student prefects" data-type="prefect" value="isprefect" class="filter__option"></option>
+                    <option label="Students NON prefects" data-type="prefect" value="notprefect" class="filter__option"></option>
+                  </optgroup>
+                  <optgroup label="Inquisitorial Squad">
+                    <option label="Students part of the Inquisitorial Squad" data-type="inquisitorial" value="isinq" class="filter__option"></option>
+                    <option label="Students NOT part of the Inquisitorial Squad" data-type="inquisitorial" value="notinq" class="filter__option"></option>
+                  </optgroup>
+                </select>
+              </article>
+              <article id="expelled">
+                <h4>Show expelled students?</h4>
+                <label class="expelled_switch">
+                  <input name="expell-switch" type="checkbox" class="expelled_switch__option" />
+                  <span class="slider"></span>
+                </label>
+              </article>
+            </div>
+          </div>
+          <article id="student-number">
+            <h4 class="student-number__header"><span class="student-number__header--title">No. of students:</span> <span class="student-number__header--number"></span></h4>
+            <div id="student-houses__container">
+              <article class="student-house__container gryffindor">
+                <div class="student-house">
+                  <h4>Gryffindor</h4>
+                  <p class="student-house__text">Students: <span class="student-house__number"></span></p>
+                </div>
+              </article>
+              <article class="student-house__container hufflepuff">
+                <div class="student-house">
+                  <h4>Hufflepuff</h4>
+                  <p class="student-house__text">Students: <span class="student-house__number"></span></p>
+                </div>
+              </article>
+              <article class="student-house__container ravenclaw">
+                <div class="student-house">
+                  <h4>Ravenclaw</h4>
+                  <p class="student-house__text">Students: <span class="student-house__number"></span></p>
+                </div>
+              </article>
+              <article class="student-house__container slytherin">
+                <div class="student-house">
+                  <h4>Slytherin</h4>
+                  <p class="student-house__text">Students: <span class="student-house__number"></span></p>
+                </div>
+              </article>
+            </div>
+          </article>
+        </section>
+      </div>
+      <div class="content_block">
+        <h2>Student Overview</h2>
+        <h4>Sort by</h4>
+        <div id="sort__container">
+          <select name="sort" id="sort__inner__container">
+            <option label="All students" data-action="sort" data-sort="all" data-sort-direction="asc" class="sort_option"></option>
+            <option label="First name" data-action="sort" data-sort="firstname" data-sort-direction="asc" class="sort__option"></option>
+            <option label="Last name" data-action="sort" data-sort="lastname" data-sort-direction="asc" class="sort__option"></option>
+            <option label="Blood status" data-action="sort" data-sort="blood" data-sort-direction="asc" class="sort__option"></option>
+            <option label="Prefects" data-action="sort" data-sort="prefect" data-sort-direction="asc" class="sort__option"></option>
+            <option label="Inquisitorial status" data-action="sort" data-sort="inquisitorial" data-sort-direction="asc" class="sort__option"></option>
+          </select>
+        </div>
+        <p><span>Direction:</span> <span class="span__direction"></span></p>
+        <section id="student-display__container"></section>
+      </div>
+    </main>
+
+    <!-- New tmeplate -->
+    <template id="student">
+      <article id="student__card">
+        <h4 class="expellText">EXPELLED</h4>
+        <div class="student__card__img--container">
+          <img src="" alt="" class="student__card__img" />
+          <img src="images/expelled.svg" alt="" class="student__card__img expellOverlay" />
+        </div>
+        <h4 class="student__card__name"></h4>
+        <div class="student__card__info">
+          <p><span>Blood status:</span><span class="blood">test</span></p>
+          <p><span>Prefect status:</span><span class="prefect">test</span></p>
+          <p><span>Inquisitorial status:</span><span class="inquisitorial">test</span></p>
+        </div>
+      </article>
+    </template>
+    <div id="popUp">
+      <article>
+        <div class="close">X</div>
+        <div class="popImages">
+          <img src="images/abbott_h.png" alt="" srcset="" />
+          <img src="images/gryffindor_crest.svg" alt="" srcset="" />
+        </div>
+        <div class="popText">
+          <h2 class="pop-fullname"> Jonas E. Madvig</h2>
+          <div class="pop-names">
+          <p>First name: <span class="pop-firstname"></span></p>
+          <p>Middle name: <span class="pop-middlename"></span></p>
+          <p>Last name: <span class="pop-lastname"></span></p>
+          <p>Nick name: <span class="pop-nickname"></span></p>
+          <p>Blood status: <span class="pop-blood"></span></p>
+        </div>
+        <div class="pop-tasks">
+          <p>Prefect status:: <span class="pop-prefect"></span></p>
+          <p>Inquisitorial status: <span class="pop-inquisitorial"></span></p>
+        </div>
+
+      </article>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

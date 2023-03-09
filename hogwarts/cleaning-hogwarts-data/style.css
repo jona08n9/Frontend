@@ -1,0 +1,471 @@
+* {
+  --colGrif: 174, 0, 1;
+  --colHuff: 255, 219, 0;
+  --colRave: 34, 47, 91;
+  --colSlyt: 42, 98, 61;
+  --test: hej;
+}
+
+body {
+  background: url("images/paper_texture.png");
+  background-size: cover;
+  padding: 10px 20px;
+  padding: 0;
+  margin: 0;
+  font-family: sanvito-pro-display, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.3em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: antiquarian-scribe, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  text-align: center;
+  margin-block: 10px 0;
+}
+
+h2 {
+  border-bottom: 1px solid black;
+}
+
+h4 {
+  padding: 0;
+  margin: 0;
+}
+/*** HEADER ***/
+
+#banner {
+  text-align: center;
+  padding-block: 10px 0;
+}
+
+#banner img {
+  width: 100px;
+  height: auto;
+}
+
+/*** MAIN ***/
+
+main {
+  max-width: 1000px;
+  margin-inline: auto;
+  padding: 0 15px;
+}
+.content_block {
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px black;
+  margin-block: 20px;
+  padding-inline: 20px;
+}
+
+/** OPTIONS **/
+#options,
+#student-number {
+  display: flex;
+}
+
+#options {
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+}
+
+#options > article,
+.collapse__mobile {
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.collapsible {
+  font-family: sanvito-pro-display, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.3em;
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: margin-bottom 0.5s ease;
+}
+.collapsible.active {
+  margin-bottom: 10px;
+}
+
+.colapseSpan {
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  transition: transform 0.2s ease;
+}
+
+.colapseSpan.open {
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+}
+
+.collapse__mobile__content__inner__section {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  border-right: none;
+  border-bottom: none;
+}
+
+.filter__select {
+  width: 100%;
+  margin: 0 0 20px 0;
+}
+
+#student-number {
+  flex-direction: column;
+}
+
+#student-houses__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+}
+
+.student-house__container {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  justify-self: center;
+  width: 80%;
+}
+.student-house__container.gryffindor {
+  background-color: rgba(var(--colGrif), 0.37);
+}
+.student-house__container.hufflepuff {
+  background-color: rgba(var(--colHuff), 0.37);
+}
+
+.student-house__container.ravenclaw {
+  background-color: rgba(var(--colRave), 0.37);
+}
+.student-house__container.slytherin {
+  background-color: rgba(var(--colSlyt), 0.37);
+}
+
+/*** EXPELED SWITCH CSS ***/
+.expelled_switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.expelled_switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #f32121;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #f32121;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(27px);
+  -ms-transform: translateX(27px);
+  transform: translateX(27px);
+}
+
+/*** SORTING BUTTONS ***/
+#sort__container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 0;
+  gap: 5px 10px;
+}
+
+.sort__option {
+  border: 1px solid #444;
+  border-radius: 5px;
+  background: #fff;
+  padding: 6px 12px;
+}
+
+.sort__option:hover {
+  cursor: url(https://www.madvigux.dk/frontend/hogwarts_project/images/wand_cursor2.png), auto;
+}
+
+/*** STUDENT CARDS ***/
+#student-display__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px 10px;
+  flex-wrap: wrap;
+}
+
+#student__card {
+  padding: 20px 15px;
+  width: 130px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.student__card__img--container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.student__card__img {
+  width: 80%;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#student__card p {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+}
+
+#student__card p span:first-child {
+  text-decoration: underline 1px solid black;
+}
+#student__card p span:last-child {
+  font-weight: 600;
+}
+.student__card__name {
+  margin: 10px auto 0;
+  text-align: center;
+}
+.student__card__img {
+  margin: 0 auto auto;
+  text-align: center;
+}
+
+.student__card__info {
+  position: fixed;
+  margin-bottom: 10px;
+  bottom: 0;
+}
+
+/* EXPELLED EFFECTS */
+
+.expellText,
+.expellOverlay {
+  display: none;
+  margin-inline: auto;
+}
+
+.expelled .student__card__img--container img:first-child {
+  filter: grayscale(100%);
+  z-index: -1;
+}
+
+.expelled .expellOverlay {
+  display: block;
+}
+
+.expelled .expellText {
+  display: block;
+}
+
+/* COLOR TO STUDENT CARD HOUSES */
+
+#student__card.gryffindor {
+  background: rgba(var(--colGrif), 0.37);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.8px);
+  -webkit-backdrop-filter: blur(8.8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#student__card.hufflepuff {
+  background: rgba(var(--colHuff), 0.37);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.8px);
+  -webkit-backdrop-filter: blur(8.8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#student__card.ravenclaw {
+  background: rgba(var(--colRave), 0.37);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.8px);
+  -webkit-backdrop-filter: blur(8.8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#student__card.slytherin {
+  background: rgba(var(--colSlyt), 0.37);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.8px);
+  -webkit-backdrop-filter: blur(8.8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* EXPELLED COLOR EFFECT */
+
+#student__card.expelled {
+  background: rgba(115, 115, 115, 0.37);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.8px);
+  -webkit-backdrop-filter: blur(8.8px);
+  border: 1px solid rgba(115, 115, 115, 0.18);
+}
+
+/* POP UP */
+#popUp {
+  position: fixed;
+  inset: 0 0 0 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(68, 68, 68, 0.8);
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#popUp article {
+  position: relative;
+  border: 2px solid rgb(68, 68, 68, 0.8);
+  background: url("images/paper_texture.png");
+  background-size: cover;
+  width: 70vw;
+  height: 70vh;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#popUp .close {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 25px;
+  font-weight: 900;
+  background-color: rgb(245, 245, 245);
+  border: 2px solid rgb(68, 68, 68, 0.8);
+  padding: 5px 12px;
+  border-radius: 50%;
+}
+
+.popImages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.popImages img {
+  width: 100px;
+  height: auto;
+}
+
+@media screen and (width>500px) {
+  .collapse__mobile__content__inner__section {
+    display: flex;
+    flex-direction: row;
+    column-gap: 40px;
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (width>768px) {
+  #options {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding-inline: 20px;
+    column-gap: 20px;
+  }
+
+  .collapse__mobile {
+    border-bottom: none;
+  }
+  .collapse__mobile__content__inner__section {
+    max-height: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    justify-content: flex-start;
+    border-bottom: none;
+  }
+
+  #options > article {
+    border-bottom: none;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  #expelled {
+    text-align: center;
+  }
+  #student-number {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #student-houses__container {
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: row; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.hidden {
+  display: none !important;
+}

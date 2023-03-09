@@ -1,0 +1,10 @@
+main {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  row-gap: 10px;
+}
+
+button {
+  padding-block: 10px;
+}

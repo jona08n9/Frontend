@@ -1,0 +1,111 @@
+.circle, .box {
+    border: none;
+}
+
+/* -1- red/green boxes */
+
+#artwork1 .box:nth-child(odd) {
+    outline: 10px solid rgb(255,100,100);
+}
+
+#artwork1 .box:nth-child(even) {
+   outline: 10px solid rgb(100,255,100);   
+}
+
+/* -2- The sun */
+
+#artwork2 .box {
+    /* border: 4px dotted white; */
+    background-color: orange;
+    mix-blend-mode: screen;
+}
+
+/* -3- Rastershield */
+
+#artwork3 div {
+    mix-blend-mode: overlay;
+    border: 2px dotted white;
+}
+#artwork3 div:nth-child(odd) {
+    background-color: rgba(69, 224, 55, 0.6);
+}
+
+#artwork3 div:nth-child(even) {
+    background-color: rgba(227, 156, 69, 0.6);
+}
+
+/* -4- Rainbow */
+#artwork4 .box {
+ mix-blend-mode: luminosity;
+}
+
+#artwork4 .box:nth-child(1) {
+    background-color: hsl(-90,50%,50%);
+}
+#artwork4 .box:nth-child(2) {
+    background-color: hsl(-70,50%,50%);
+}
+#artwork4 .box:nth-child(3) {
+    background-color: hsl(-50,50%,50%);
+}
+#artwork4 .box:nth-child(4) {
+    background-color: hsl(-30,50%,50%);
+}
+#artwork4 .box:nth-child(5) {
+    background-color: hsl(-10,50%,50%);
+}
+#artwork4 .box:nth-child(6) {
+    background-color: hsl(10,50%,50%);
+}
+#artwork4 .box:nth-child(7) {
+    background-color: hsl(30,50%,50%);
+}
+#artwork4 .box:nth-child(8) {
+    background-color: hsl(50,50%,50%);
+}
+#artwork4 .box:nth-child(9) {
+    background-color: hsl(70,50%,50%);
+}
+
+
+
+/* -5- */
+#artwork5 .circle {
+    background-color: rgba(207, 102, 213, 0.5);
+    mix-blend-mode: multiply;
+}
+
+/* -6- */
+#artwork6 .circle {
+    mix-blend-mode: difference;
+    background-color: red;
+}
+/* -7- */
+#artwork7 .circle {
+    background-color: rgb(15, 201, 15);
+    mix-blend-mode: difference;
+}
+
+#artwork7 .circle:nth-child(odd) {
+    background-color: rgb(0, 45, 0);
+}
+
+/* -8- */
+#artwork8 div {
+    mix-blend-mode: multiply;
+    background-color: rgba(250,148,26,.25);
+}
+
+/* -9- */
+
+#artwork9 div {
+    mix-blend-mode: color-burn;
+}
+
+#artwork9 .circle {
+    background-color: rgba(102, 180, 213, 0.5);
+}
+
+#artwork9 .box { 
+    background-color: rgba(207, 102, 213, 0.5);
+}

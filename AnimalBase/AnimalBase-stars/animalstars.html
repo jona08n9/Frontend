@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Animalbase</title>
+    <link rel="stylesheet" href="animalstars.css" />
+  </head>
+  <body>
+    <h1>Animals</h1>
+    <p>
+      Filter:
+      <button class="filter" data-action="filter" data-filter="cat">Only Cats</button>
+      <button class="filter" data-action="filter" data-filter="dog">Only Dogs</button>
+      <!-- <button class="filter" data-action="filter" data-filter="dragon">Only Dragons</button> -->
+      <button class="filter" data-action="filter" data-filter="*">all</button>
+    </p>
+
+    <hr />
+
+    <table id="list">
+      <thead>
+        <tr id="sorting">
+          <th data-action="sort" data-sort-direction="asc" data-sort="winner">🏆</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="star">⭐</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="name">Name</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="type">Type</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="desc">Description</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="age">Age</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- animal template will be copied and inserted here -->
+      </tbody>
+    </table>
+
+    <template id="animal">
+      <tr>
+        <td data-field="winner" data-winner="false"></td>
+        <td data-field="star">⭐</td>
+        <td data-field="name">NAME</td>
+        <td data-field="type">TYPE</td>
+        <td data-field="desc">DESCRIPTION</td>
+        <td data-field="age">AGE</td>
+      </tr>
+    </template>
+
+    <div id="remove_other" class="modal hide">
+      <div class="dialog">
+        <button class="closebutton">X</button>
+        <h1>Warning!</h1>
+        <p>
+          There can only be one winner of each type. <br />
+          Do you want to remove the other winner?
+        </p>
+        <button id="remove_otherButton">Remove <span id="otherName"></span>?</button>
+      </div>
+    </div>
+
+    <div id="remove_aorb" class="modal hide">
+      <div class="dialog">
+        <button class="closebutton">X</button>
+        <h1>Warning!</h1>
+        <p>
+          There can not be anymore than two winners.<br />
+          Do you want to remove one of the existing winners?
+        </p>
+        <div class="sidebyside">
+          <button id="removeA">Remove <span id="Aoption"></span>?</button>
+          <button id="removeB">Remove <span id="Boption"></span>?</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="animalstars.js"></script>
+  </body>
+</html>

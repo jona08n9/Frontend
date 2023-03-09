@@ -1,0 +1,88 @@
+[data-action] {
+  cursor: pointer;
+}
+/* 
+#sorting th {
+  filter: grayscale(100%);
+} */
+
+#sorting th.sortby {
+  text-decoration: underline;
+}
+
+#sorting th.sortby[data-sort-direction="asc"]::after {
+  content: "⇓";
+}
+
+#sorting th.sortby[data-sort-direction="desc"]::after {
+  content: "⇑";
+}
+
+#list {
+  border-collapse: collapse;
+}
+
+#list tbody tr td {
+  padding: 4px;
+}
+
+#list tbody tr:nth-child(odd) td {
+  background-color: lightblue;
+  border-right: rgb(240, 249, 255) 1px dotted;
+}
+
+#list tbody tr:nth-child(even) td {
+  border-right: rgb(171, 219, 252) 1px dotted;
+}
+
+/* ****** STAR ****** */
+
+[data-field="star"] {
+  text-align: center;
+  cursor: pointer;
+  min-width: 2em;
+}
+
+/* ****** WINNER ****** */
+
+td[data-field="winner"]::after {
+  content: "🏆";
+}
+td[data-field="winner"][data-winner="false"]::after {
+  filter: grayscale(1);
+}
+
+/*** MODAL ***/
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog {
+  border-radius: 5px;
+  padding: 2em;
+  background-color: #cfa4a4;
+  position: relative;
+  /* box-shadow: 1px 1px 10px black; */
+}
+
+button.closebutton {
+  position: absolute;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  top: -0.8em;
+  right: -0.8em;
+}
+
+.hide {
+  display: none;
+}

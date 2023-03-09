@@ -1,0 +1,173 @@
+body {
+  margin: 0;
+  background-color: #444059;
+  font-family: "Luckiest Guy", cursive;
+  color: #eee;
+}
+
+h1 {
+  text-align: center;
+  font-size: 8vw;
+}
+
+#gamefield {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+#player1 {
+  --rot: 1;
+}
+
+#player2 {
+  --rot: -1;
+}
+
+.player {
+  transform: scale(var(--rot), 1);
+  width: 40vw;
+  height: 40vw;
+  background-size: 100%;
+  background-image: url(hand_rock.png);
+}
+
+.player.rock {
+  background-image: url(hand_rock.png);
+}
+
+.player.paper {
+  background-image: url(hand_paper.png);
+}
+
+.player.scissors {
+  background-image: url(hand_scissors.png);
+}
+
+.player.shake {
+  background-image: url(hand_rock.png);
+  transform-origin: left center;
+  animation: shake 1.8s ease-in 1 forwards;
+}
+
+@keyframes shake {
+  0% {
+    transform: scale(var(--rot), 1) translateX(calc((var(--rot) - 1) * 50%)) rotate(0deg);
+  }
+  16% {
+    transform: scale(var(--rot), 1) translateX(calc((var(--rot) - 1) * 50%)) rotate(-40deg);
+  }
+  24% {
+    transform: scale(var(--rot), 1) translateX(calc((var(--rot) - 1) * 50%)) rotate(5deg);
+  }
+  32% {
+    transform: scale(var(--rot), 1) translateX(calc((var(--rot) - 1) * 50%)) rotate(0deg);
+  }
+  48% {
+    transform: scale(var(--rot), 1) translateX(calc((var(--rot) - 1) * 50%)) rotate(-40deg);
+  }
+  56% {
+    transform: scale(var(--rot), 1) translateX(calc((var(--rot) - 1) * 50%)) rotate(5deg);
+  }
+  64% {
+    transform: scale(var(--rot), 1) translateX(calc((var(--rot) - 1) * 50%)) rotate(0deg);
+  }
+  80% {
+    transform: scale(var(--rot), 1) translateX(calc((var(--rot) - 1) * 50%)) rotate(-40deg);
+  }
+  96% {
+    transform: scale(var(--rot), 1) translateX(calc((var(--rot) - 1) * 50%)) rotate(5deg);
+  }
+  100% {
+    transform: scale(var(--rot), 1) translateX(calc((var(--rot) - 1) * 50%)) rotate(0deg);
+  }
+}
+
+#texts {
+  position: absolute;
+  width: 100%;
+  margin-top: 10vw;
+  pointer-events: none;
+}
+
+#texts h1 {
+  color: #ffde53;
+  text-shadow: 4px 4px 1px red, -4px -4px 1px red, 4px -4px 1px red, -4px 4px 1px red;
+}
+
+.hidden {
+  display: none;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+  max-width: 50vw;
+  margin-inline: auto;
+}
+
+#buttons.disabled button {
+  filter: grayscale(100%) brightness(0.75);
+}
+
+#buttons button {
+  background-size: 100%;
+  border-radius: 10vw;
+  width: 10vw;
+  height: 10vw;
+  transition: filter 0.8s;
+}
+
+.shadow {
+  box-shadow: 5px 5px 5px 0px rgba(235, 235, 235, 0.79);
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(235, 235, 235, 0.79);
+  transform: translate(-5px, -5px);
+}
+
+.button_push {
+  animation-name: push;
+  animation-duration: 150ms;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+@keyframes push {
+  0% {
+    transform: translate(-5px, -5px);
+  }
+  50% {
+    transform: translate(3px, 3px);
+  }
+  100% {
+    transform: translate(-5px, -5px);
+  }
+}
+
+button.rock {
+  background-image: url(button_rock.png);
+}
+
+button.paper {
+  background-image: url(button_paper.png);
+}
+
+button.scissors {
+  background-image: url(button_scissors.png);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#win_rate {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.5em;
+}
+
+#win_rate span {
+  text-decoration: underline 2px solid #fff;
+  text-underline-offset: 5px;
+}

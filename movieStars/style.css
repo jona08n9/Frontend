@@ -1,0 +1,191 @@
+* {
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+
+  --transition: all 150ms ease-out;
+  --fightclub: rgb(255, 0, 0);
+  --goodfellas: rgb(0, 255, 0);
+  --inception: rgb(255, 255, 0);
+  --pulpfiction: rgb(0, 0, 255);
+  --all: black;
+}
+
+body {
+  font-family: Montserrat, sans-serif;
+  padding: 15px 20px;
+}
+
+/*** Headers ***/
+
+body > h1 {
+  font-family: "Permanent Marker", cursive;
+  text-align: center;
+  font-size: 5rem;
+}
+
+body > h3 {
+  text-align: center;
+  padding-bottom: 20px;
+  font-weight: 500;
+}
+
+/*** BUTTONS ***/
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80vw;
+  margin: 20px auto;
+  flex-wrap: wrap;
+}
+
+.button {
+  border: none;
+  font-size: 1.3em;
+  transition: var(--transition);
+  padding: 0 10px 3px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid transparent;
+  background-color: transparent;
+}
+
+/* box-shadows for filter buttons */
+button.all {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--all);
+  transform: translateY(-0.25em);
+}
+button.fightclub {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--fightclub);
+  transform: translateY(-0.25em);
+}
+button.goodfellas {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--goodfellas);
+  transform: translateY(-0.25em);
+}
+button.inception {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--inception);
+  transform: translateY(-0.25em);
+}
+button.pulpfiction {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--pulpfiction);
+  transform: translateY(-0.25em);
+}
+
+/* Chosen colors */
+.chosen.all {
+  border: 2px solid var(--all);
+}
+.chosen.fightclub {
+  border: 2px solid var(--fightclub);
+}
+.chosen.goodfellas {
+  border: 2px solid var(--goodfellas);
+}
+.chosen.inception {
+  border: 2px solid var(--inception);
+}
+.chosen.pulpfuction {
+  border: 2px solid var(--pulpfiction);
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+/*** MAIN ***/
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 0 0 0;
+}
+
+main article {
+  display: inline-block;
+  width: 200px;
+  height: 65px;
+  padding: 5px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+main article:nth-child(2n + 1) {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Colors on hover*/
+main article.fightclub:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--fightclub);
+  transform: translateY(-0.25em);
+  cursor: pointer;
+}
+main article.goodfellas:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--goodfellas);
+  transform: translateY(-0.25em);
+  cursor: pointer;
+}
+main article.inception:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--inception);
+  transform: translateY(-0.25em);
+  cursor: pointer;
+}
+main article.pulpfiction:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--pulpfiction);
+  transform: translateY(-0.25em);
+  cursor: pointer;
+}
+
+/*** POP UP ***/
+
+.pop-op {
+  /* display: none; */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+}
+
+.pop_container {
+  width: 100%;
+  max-width: 600px;
+  z-index: 50;
+  position: relative;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 4rem auto;
+  padding: 30px 20px;
+  background-color: #fff;
+  box-shadow: 1px 1px 60px rgb(0 0 0 / 60%);
+}
+
+.pop_close {
+  position: absolute;
+  top: -10px;
+  right: 5px;
+  font-size: 3em;
+  font-weight: 300;
+}
+
+.pop_close:hover {
+  cursor: pointer;
+}
+
+.pop-op span {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.2em;
+}
+
+/*** HIDDEN ***/
+.hidden {
+  display: none;
+}
