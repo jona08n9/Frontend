@@ -430,6 +430,7 @@ function showDetails(student) {
   document.querySelector(".pop-lastname").textContent = student.lastname;
   document.querySelector(".pop-nickname").textContent = student.nickname;
   document.querySelector(".pop-blood").textContent = student.blood;
+  document.querySelector(".pop-gender").textContent = student.gender;
 
   // Student Tasks
   checkStudentStats(student);
@@ -451,6 +452,7 @@ function showDetails(student) {
       //If checked to false --> it is set to CHECKED now, so check for other prefects
 
       if (document.querySelector(".prefinput").checked === true) {
+        document.querySelector(".pop-prefect__container .slider").removeEventListener("click", newPrefect);
         student.prefect = false;
         console.log(document.querySelector(".prefinput").checked);
         document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${student.house}.`;
@@ -458,6 +460,7 @@ function showDetails(student) {
       }
       //If checkbox set to TRUE, then we check if it is possible:
       else if (document.querySelector(".prefinput").checked === false) {
+        document.querySelector(".pop-prefect__container .slider").removeEventListener("click", newPrefect);
         console.log(document.querySelector(".prefinput").checked);
         checkPrefect(student);
         buildNewList();
@@ -499,21 +502,74 @@ function closePop() {
 }
 
 function checkPrefect(chosenStudent) {
+  console.log(chosenStudent);
   //Make three lists: One for all prefects, one for how many in the same house and one for how many of the same gender
   const prefects = allStudents.filter((person) => person.prefect);
   const housePrefects = prefects.filter((person) => person.house === chosenStudent.house);
   const otherGender = prefects.filter((person) => person.gender === chosenStudent.gender).shift();
 
   console.log(prefects);
+  console.log(housePrefects);
   console.log(otherGender);
+  // console.log(`${prefects}`);
+  // console.log(`${housePrefects}`);
+  // console.log(`${otherGender}`);
 
-  makeNewPrefect(chosenStudent, otherGender);
-  function makeNewPrefect(newPre, exePref) {
+  if (otherGender !== undefined && housePrefects.length >= 2) {
+    console.log("There can only be one John");
+    openRemoveModal(chosenStudent, otherGender);
+  } else {
+    console.log("OKEIDOKEI -- TRUTH");
+    makeNewPrefect(chosenStudent);
+  }
+
+  function openRemoveModal(newPre, extPre) {
+    console.log("OpenRemoveModal");
+    document.querySelector("#removeModal").classList.remove("hidden");
+    document.querySelector("#removeModal .close").addEventListener("click", closeRemoveModal);
+    document.querySelectorAll(".ext-pref").forEach((text) => {
+      text.textContent = extPre.firstname;
+    });
+    document.querySelector(".new-pref").textContent = newPre.firstname;
+
+    document.querySelector(".remove-new-pref-but").addEventListener("click", removeNewPrefect);
+    document.querySelector(".remove-ext-pref-but").addEventListener("click", removeExistingPrefect);
+  }
+
+  function removeNewPrefect() {
+    console.log(`removeNewPrefect: ${chosenStudent.firstname}`);
+    chosenStudent.prefect = false;
+    document.querySelector(".prefinput").checked = false;
+    document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${chosenStudent.house}.`;
+    buildNewList();
+    closeRemoveModal();
+  }
+
+  function removeExistingPrefect() {
+    console.log(`removeExistingPrefect: ${otherGender.firstname}, with: ${chosenStudent.firsname}`);
+    chosenStudent.prefect = true;
+    document.querySelector(".prefinput").checked = true;
+    document.querySelector(".pop-prefect").textContent = `Student is prefect for ${student.house}.`;
+    otherGender.prefect = false;
+    buildNewList();
+    closeRemoveModal();
+  }
+
+  // makeNewPrefect(chosenStudent, otherGender);
+  function makeNewPrefect(newPre) {
     newPre.prefect = true;
     document.querySelector(".pop-prefect").textContent = `Student is prefect for ${chosenStudent.house}.`;
     buildNewList();
   }
 
+  function closeRemoveModal() {
+    document.querySelector("#removeModal").classList.add("hidden");
+    document.querySelector("#removeModal .close").removeEventListener("click", closeRemoveModal);
+    document.querySelectorAll(".ext-pref").forEach((text) => {
+      text.textContent = "";
+    });
+    document.querySelector(".new-pref").textContent = "";
+  }
   // function removeOtherInfo(other) {
   //   document.querySelector("#removeFolks.modal").classList.remove("hide");
   //   document.querySelector("#removeFolks.modal .close").addEventListener("click", closeDialog);

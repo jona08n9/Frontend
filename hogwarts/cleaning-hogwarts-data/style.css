@@ -366,7 +366,7 @@ input:checked + .slider:before {
 
 /* POP UP */
 #popUp,
-#removeFolks {
+#removeModal {
   position: fixed;
   inset: 0 0 0 0;
   width: 100%;
@@ -377,12 +377,12 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
 }
-#removeFolks {
+#removeModal {
   z-index: 51;
 }
 
 #popUp .close,
-#removeFolks .close {
+#removeModal .close {
   position: absolute;
   top: -20px;
   right: -20px;
@@ -462,7 +462,7 @@ input:checked + .slider:before {
 }
 
 /* ALERT FOR PREFECT */
-#removeFolks article {
+#removeModal article {
   position: relative;
   border: 2px solid rgb(68, 68, 68, 0.8);
   background: url("images/paper_texture.png");
