@@ -296,7 +296,6 @@ function displayStudent(student) {
 }
 
 // FILTER FUNCTIONS
-
 function selectFilter(event) {
   let filter = document.querySelector("#filter__container").value;
   let filterType = event.target.dataset.type;
@@ -355,11 +354,6 @@ function setSort(sortBy, sortDir) {
 function sortList(sortedList) {
   let direction = 1;
 
-  // Check for what comes from sortedList
-  // for (let i = 0; i < sortedList.length; i++) {
-  //   console.log(sortedList[i].firstname);
-  // }
-
   // controls which way list is sorted
   if (settings.sortDir === "desc") {
     direction = -1;
@@ -382,10 +376,6 @@ function sortList(sortedList) {
       return 0;
     }
   }
-  // Check values from sortCurrentList is sorted
-  // for (let i = 0; i < sortedList.length; i++) {
-  //   console.log(sortedList[i].firstname);
-  // }
 
   // returns the sotedList
   return sortedList;
@@ -469,6 +459,7 @@ function showDetails(student) {
 
     // INQ UPDATE
     if (student.house === "Slytherin" && student.blood === "Pure") {
+      document.querySelector(".pop-inquisitorial__container").classList.remove("hidden");
       if (student.inquisitorial === true) {
         document.querySelector(".pop-inquisitorial").textContent = `Student is part of inquisitorial squad`;
         document.querySelector(".inqinput").checked = true;
@@ -515,7 +506,7 @@ function checkPrefect(chosenStudent) {
   // console.log(`${housePrefects}`);
   // console.log(`${otherGender}`);
 
-  if (otherGender !== undefined && housePrefects.length >= 2) {
+  if (otherGender !== undefined || housePrefects.length >= 2) {
     console.log("There can only be one John");
     openRemoveModal(chosenStudent, otherGender);
   } else {
