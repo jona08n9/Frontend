@@ -257,6 +257,10 @@ input:checked + .slider:before {
   justify-content: flex-start;
 }
 
+#student__card.expelled {
+  pointer-events: none;
+}
+
 .student__card__img--container {
   display: grid;
   width: 100%;
@@ -366,7 +370,8 @@ input:checked + .slider:before {
 
 /* POP UP */
 #popUp,
-#removeModal {
+#removeModal,
+#expellModal {
   position: fixed;
   inset: 0 0 0 0;
   width: 100%;
@@ -377,12 +382,14 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
 }
-#removeModal {
+#removeModal,
+#expellModal {
   z-index: 51;
 }
 
 #popUp .close,
-#removeModal .close {
+#removeModal .close,
+#expellModal .close {
   position: absolute;
   top: -20px;
   right: -20px;
@@ -392,6 +399,7 @@ input:checked + .slider:before {
   border: 2px solid rgb(68, 68, 68, 0.8);
   padding: 5px 12px;
   border-radius: 50%;
+  cursor: pointer;
 }
 #popUp article {
   position: relative;
@@ -406,16 +414,36 @@ input:checked + .slider:before {
 
 .popImages {
   display: flex;
-  justify-content: center;
+  max-width: 700px;
+  justify-content: space-around;
   align-items: center;
-  flex-direction: row;
 }
-.popImages img {
-  width: 150px;
-  height: auto;
+
+.pop-image-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }
+
+.pop-image-student {
+  grid-column: 1 / 4;
+  grid-row: 1 / 4;
+}
+.pop-image-housecrest {
+  grid-column: 3 / 5;
+  grid-row: 3 / 5;
+}
+
+.pop-expell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 #popUp h2 {
   text-align: center;
+  margin-top: 0.25em;
 }
 
 .pop-names p,
@@ -470,17 +498,49 @@ input:checked + .slider:before {
 }
 
 /* ALERT FOR PREFECT */
-#removeModal article {
+#removeModal article,
+#expellModal article {
   position: relative;
   border: 2px solid rgb(68, 68, 68, 0.8);
   background: url("images/paper_texture.png");
   background-size: cover;
   min-width: 200px;
   max-width: 600px;
-  height: 150px;
   padding: 20px;
   display: flex;
   flex-direction: column;
+}
+
+.prefect_container button,
+.expell_container button {
+  margin-block: 5px 10px;
+  padding: 12px 18px;
+  font-size: 0.9em;
+  border: 2px solid black;
+  background-color: rgba(255, 255, 255, 0.37);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+button.expell-student-btn:hover {
+  background-color: rgba(255, 0, 0, 0.37);
+}
+
+button.iregret-button:hover {
+  background-color: rgba(0, 255, 8, 0.37);
+}
+
+#removeModal.Hufflepuff button:hover {
+  background-color: rgba(var(--colHuff), 0.37);
+}
+#removeModal.Gryffindor button:hover {
+  background-color: rgba(var(--colGryf), 0.37);
+}
+#removeModal.Ravenclaw button:hover {
+  background-color: rgba(var(--colRave), 0.37);
+  color: rgb(245, 245, 245);
+}
+#removeModal.Slytherin button:hover {
+  background-color: rgba(var(--colSlyt), 0.37);
 }
 
 @media screen and (width>500px) {
@@ -547,11 +607,17 @@ input:checked + .slider:before {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    margin-inline: auto;
   }
 }
 
 @media screen and (width > 900px) {
+  .popImages {
+    height: 200px;
+    gap: 100px;
+  }
+
   .popText {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

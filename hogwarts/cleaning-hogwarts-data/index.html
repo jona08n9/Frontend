@@ -123,8 +123,17 @@
       <article>
         <div class="close">X</div>
         <div class="popImages">
-          <img class="pop-image-student" src="images/abbott_h.png" alt="" />
-          <img class="pop-image-housecrest" src="images/gryffindor_crest.svg" alt="" />
+          <div class="pop-image-container">
+            <img class="pop-image-student" src="images/abbott_h.png" alt="" />
+            <img class="pop-image-housecrest" src="images/gryffindor_crest.svg" alt="" />
+          </div>
+          <div class="pop-expell">
+            <span>Expell student?</span>
+            <label class="expelled_switch">
+              <input name="expell-switch" type="checkbox" class="pop-expell-switch" />
+              <span class="slider"></span>
+            </label>
+          </div>
         </div>
         <div class="popText">
           <div class="pop-names">
@@ -153,7 +162,7 @@
             <div class="pop-inquisitorial__container hidden">
               <p>Inquisitorial status: <span class="pop-inquisitorial"></span></p>
               <div class="pop-checkbox">
-                <span class="">Lorem ipsum</span>
+                <span class="">Toggle to set prefect status</span>
                 <label class="expelled_switch">
                   <input name="expell-switch" type="checkbox" class="inqinput" />
                   <span class="slider"></span>
@@ -173,6 +182,18 @@
         <h3><span class="ext-pref"></span> is already a prefect. What will you do?</h3>
         <button class="remove-new-pref-but">Don't add <span class="new-pref"></span> as prefect.</button>
         <button class="remove-ext-pref-but">Remove <span class="ext-pref"></span> as prefect.</button>
+      </article>
+    </div>
+
+    <div id="expellModal" class="hidden">
+      <article class="expell_container">
+        <div class="close">X</div>
+        <h3>
+          You are about to expell <span class="expell-name"></span>. Are you sure you want that? <br />
+          <b>WARNING: It's is not possible to un-expell a student.</b>
+        </h3>
+        <button class="expell-student-btn">AVADA KA-DU-HA-DET, <span class="expell-name"></span>!</button>
+        <button class="iregret-button">Det var en fejl, jeg fortryder!</button>
       </article>
     </div>
     <script src="script.js"></script>

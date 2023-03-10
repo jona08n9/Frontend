@@ -3,9 +3,10 @@
 const studentURL = "https://petlatkea.dk/2021/hogwarts/students.json";
 const bloodURL = "https://petlatkea.dk/2021/hogwarts/families.json";
 let allStudents = [];
+let expelledStudents = [];
+let hackedArray = [];
 let grawpList;
 let bloodList;
-let hackedArray = [];
 let id = -1;
 
 //HOUSE COUNTERS
@@ -44,7 +45,7 @@ function addDocumentListeners() {
     option.addEventListener("click", selectSorting);
   });
   document.querySelector(".span__direction").textContent = `${settings.sortDir.charAt(0).toUpperCase()}${settings.sortDir.slice(1).toLowerCase()}`;
-
+  document.querySelector("#expelled .expelled_switch span").addEventListener("click", showExpelledStudents);
   document.addEventListener("keydown", initHacked);
 }
 
@@ -424,10 +425,10 @@ function showDetails(student) {
 
   // Student Tasks
   checkStudentStats(student);
-
   function checkStudentStats(student) {
     //Add prfect listener
     document.querySelector(".pop-prefect__container .slider").addEventListener("click", newPrefect);
+    document.querySelector(".pop-expell .slider").addEventListener("click", newExpell);
 
     //Update visual
     if (student.prefect === true) {
@@ -455,6 +456,27 @@ function showDetails(student) {
         checkPrefect(student);
         buildNewList();
       }
+    }
+    function newExpell() {
+      //If checked to false --> it is set to CHECKED now, so check for other prefects
+
+      if (document.querySelector(".pop-expell-switch").checked === false) {
+        console.log(document.querySelector(".pop-expell-switch").checked);
+        expellStudentClick(student);
+        // document.querySelector(".pop-expell .slider").removeEventListener("click", newExpell);
+        // student.prefect = false;
+        // console.log(document.querySelector(".prefinput").checked);
+        // document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${student.house}.`;
+        // buildNewList();
+      }
+      //If checkbox set to TRUE, then we check if it is possible:
+      // else if (document.querySelector(".prefinput").checked === true) {
+      //   console.log(document.querySelector(".prefinput").checked);
+
+      //   // document.querySelector(".pop-prefect__container .slider").removeEventListener("click", newPrefect);
+      //   // checkPrefect(student);
+      //   // buildNewList();
+      // }
     }
 
     // INQ UPDATE
@@ -497,14 +519,11 @@ function checkPrefect(chosenStudent) {
   //Make three lists: One for all prefects, one for how many in the same house and one for how many of the same gender
   const prefects = allStudents.filter((person) => person.prefect);
   const housePrefects = prefects.filter((person) => person.house === chosenStudent.house);
-  const otherGender = prefects.filter((person) => person.gender === chosenStudent.gender).shift();
+  const otherGender = housePrefects.filter((person) => person.gender === chosenStudent.gender).shift();
 
   console.log(prefects);
   console.log(housePrefects);
   console.log(otherGender);
-  // console.log(`${prefects}`);
-  // console.log(`${housePrefects}`);
-  // console.log(`${otherGender}`);
 
   if (otherGender !== undefined || housePrefects.length >= 2) {
     console.log("There can only be one John");
@@ -517,7 +536,8 @@ function checkPrefect(chosenStudent) {
   function openRemoveModal(newPre, extPre) {
     console.log("OpenRemoveModal");
     document.querySelector("#removeModal").classList.remove("hidden");
-    document.querySelector("#removeModal .close").addEventListener("click", closeRemoveModal);
+    document.querySelector("#removeModal").classList.add(`${newPre.house}`);
+    document.querySelector("#removeModal .close").addEventListener("click", closeRemoveModal1);
     document.querySelectorAll(".ext-pref").forEach((text) => {
       text.textContent = extPre.firstname;
     });
@@ -532,8 +552,8 @@ function checkPrefect(chosenStudent) {
     chosenStudent.prefect = false;
     document.querySelector(".prefinput").checked = false;
     document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${chosenStudent.house}.`;
+    newPrefect2();
     buildNewList();
-    closeRemoveModal();
   }
 
   function removeExistingPrefect() {
@@ -554,114 +574,120 @@ function checkPrefect(chosenStudent) {
   }
 
   function closeRemoveModal() {
-    document.querySelector("#removeModal").classList.add("hidden");
+    document.querySelector("#removeModal").className = "";
     document.querySelector("#removeModal .close").removeEventListener("click", closeRemoveModal);
     document.querySelectorAll(".ext-pref").forEach((text) => {
       text.textContent = "";
     });
     document.querySelector(".new-pref").textContent = "";
+    document.querySelector("#removeModal").classList.add("hidden");
   }
-  // function removeOtherInfo(other) {
-  //   document.querySelector("#removeFolks.modal").classList.remove("hide");
-  //   document.querySelector("#removeFolks.modal .close").addEventListener("click", closeDialog);
-  //   document.querySelector(".remove-new-pref-but").addEventListener("click", clickRemoveNew);
-  //   document.querySelector(".remove-ext-pref-but").addEventListener("click", clickRemoveOther);
 
-  //   document.querySelectorAll(".ext-pref").forEach((text) => {
-  //     text.textContent = other.firstname;
-  //   });
-  //   document.querySelector(".new-pref").textContent = chosenStudent.firstname;
-  // }
+  function closeRemoveModal1() {
+    document.querySelector("#removeModal").className = "";
+    document.querySelector("#removeModal .close").removeEventListener("click", closeRemoveModal);
+    document.querySelectorAll(".ext-pref").forEach((text) => {
+      text.textContent = "";
+    });
+    document.querySelector(".new-pref").textContent = "";
+    document.querySelector(".prefinput").checked = false;
+    document.querySelector("#removeModal").classList.add("hidden");
+  }
+
+  function newPrefect2() {
+    document.querySelector(".pop-prefect__container .slider").removeEventListener("click", newPrefect2);
+    closeRemoveModal();
+    closePop();
+  }
 }
 
-// function tryMakePrefect(chosenStudent) {
-//   //Maker filter for sudents that are prefects ++ filter that list for people with the same gender and shift the oldest entry
-//   console.log(chosenStudent);
-//   console.log(housePrefects);
-//   console.log(prefects);
-//   console.log(otherGender);
+function expellStudentClick(chosenStudent) {
+  console.log(chosenStudent);
 
-//   //Make the student a prefect - If user wants!
-//   if (otherGender !== undefined) {
-//     removeAorB(chosenStudent, otherGender);
-//   } else {
-//     makePrefect(chosenStudent);
-//   }
+  //Pop up to make sure if you want to expell student
+  expellPopUp();
 
-//   function makePrefect(student) {
-//     student.prefect = true;
-//     document.querySelector(".prefinput").checked = true;
-//     document.querySelector(".pop-prefect").textContent = `Student is prefect for ${student.house}`;
-//     buildNewList();
-//   }
+  function expellPopUp() {
+    console.log(chosenStudent);
+    document.querySelector(".pop-expell-switch").checked = true;
+    document.querySelector("#expellModal").classList.remove("hidden");
+    document.querySelectorAll(".expell-name").forEach((name) => {
+      name.textContent = chosenStudent.firstname;
+    });
+    document.querySelector(".expell-student-btn").addEventListener("click", expellStudent);
+    document.querySelector(".iregret-button").addEventListener("click", iRegretThis);
+  }
+  //If no --> Go back and macke checkbox be unchcked.
+  function iRegretThis() {
+    console.log(chosenStudent);
+    chosenStudent.expelled = false;
+    document.querySelector(".pop-expell-switch").checked = false;
+    document.querySelector(".pop-expell .slider").removeEventListener("click", expellStudent(chosenStudent));
+    document.querySelector("#expellModal").classList.add("hidden");
+    document.querySelectorAll(".expell-name").forEach((name) => {
+      name.textContent = "";
+    });
+    document.querySelector(".expell-student-btn").removeEventListener("click", expellStudent);
+    document.querySelector(".iregret-button").removeEventListener("click", iRegretThis);
+  }
 
-//   function removeOtherPrefect(newPre, curPre) {
-//     console.log("SKIFT STOL");
+  //if yes --> Get student from allStudents, remove and add to new list ++ update allStudents without student.
+  function expellStudent() {
+    console.log(chosenStudent);
+    chosenStudent.expelled = true;
+    removeFromAllStudents(chosenStudent);
+    // addToExpelledStudents(student);
+    buildNewList();
+    checkStudentNumbers(allStudents);
+    //Remove Expell Alert and reset
+    document.querySelector("#expellModal").classList.add("hidden");
+    document.querySelectorAll(".expell-name").forEach((name) => {
+      name.textContent = "";
+    });
+    document.querySelector(".expell-student-btn").removeEventListener("click", expellStudent);
+    document.querySelector(".iregret-button").removeEventListener("click", iRegretThis);
+    closePop();
+  }
 
-//     document.querySelector("#removeFolks").classList.remove("hidden");
-//     document.querySelector("#removeFolks .close").addEventListener("click", closeRemove);
-//     document.querySelector(".prefectNew").addEventListener("click", ignoreNewPrefect(newPre));
-//     document.querySelector(".prefectCurrent").addEventListener("click", removeCurrentPrefect(newPre, curPre));
+  function removeFromAllStudents() {
+    console.log(chosenStudent);
+    expelledStudents.push(allStudents.shift(chosenStudent));
+    console.log(allStudents.shift(chosenStudent));
+    console.log(expelledStudents);
+    // console.log(allStudents.filter((student) => student.expelled === true));
+    // expelledStudents.push(allStudents.filter((student) => student.expelled === true));
+    // console.log(expelledStudents);
+    // expelledStudents.push(allStudents.filter((person) => person.expelled === true).shift);
+    // allStudents.shift(student);
+  }
+}
 
-//     document.querySelectorAll(".existing_prefect_student_name").forEach((span) => {
-//       span.textContent = curPre.firstname;
-//     });
-//     document.querySelector(".prefect_student_name").textContent = newPre.firstname;
-//   }
+function showExpelledStudents() {
+  document.querySelector("#expelled .expelled_switch span").removeEventListener("click", showExpelledStudents);
+  //If toggle is true = show expelled students
+  if (document.querySelector("#expelled .expelled_switch__option").checked === false) {
+    console.log("true");
+    console.log(document.querySelector("#expelled .expelled_switch__option").checked);
+    if (expelledStudents.length === 0) {
+      alert("No students are expelled bro. Chill");
+      turnSlideOff();
+    } else {
+      displayCleanStudentList(expelledStudents);
+      document.querySelector("#expelled .expelled_switch span").addEventListener("click", showExpelledStudents);
+    }
+    // If toggle is false == show current students
+  } else if (document.querySelector("#expelled .expelled_switch__option").checked === true) {
+    console.log("false");
+    console.log(document.querySelector("#expelled .expelled_switch__option").checked);
+    displayCleanStudentList(allStudents);
+    document.querySelector("#expelled .expelled_switch span").addEventListener("click", showExpelledStudents);
+  }
+}
 
-//   // function controlList(studentHouse, studentGender) {
-//   //   const sameHouse = allStudents.filter((student) => student.house === studentHouse && student.prefect);
-//   //   const sameGender = sameHouse.filter((student) => student.gender === studentGender);
-//   //   if (sameHouse.length < 2 && sameGender < 1) {
-//   //     return true;
-//   //   } else {
-//   //     return false;
-//   //   }
-//   // }
-
-//   function ignoreNewPrefect(newPre) {
-//     newPre.prefect = false;
-//     document.querySelector(".prefinput").checked = false;
-//     document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${chosenStudent.house}.`;
-//     closeRemove(newPre);
-//   }
-
-//   function removeCurrentPrefect(newPre, curPre) {
-//     removeOtherPrefect(newPre, curPre);
-//     makePrefect(newPre);
-//     buildNewList();
-//     closeRemove(newPre);
-//   }
-
-//   function removeOtherPrefect(newPre, curPre) {
-//     curPre.prefect = false;
-//     closeRemove(newPre);
-//   }
-
-//   function closeRemove(newPre) {
-//     document.querySelector("#removeFolks .close").removeEventListener("click", closeRemove);
-//     document.querySelector(".prefectNew").removeEventListener("click", ignoreNewPrefect(newPre));
-//     document.querySelector(".prefectCurrent").removeEventListener("click", removeCurrentPrefect(newPre, curPre));
-
-//     document.querySelector("#removeFolks").classList.add("hidden");
-//     document.querySelector(".prefinput").checked = false;
-//     showDetails(newPre);
-//   }
-
-// function escCloseRemove(event) {
-//   document.addEventListener("keydown", escCloseDetails);
-//   document.removeEventListener("keydown", escCloseRemove);
-//   document.querySelector("#removeFolks .close").removeEventListener("click", closeRemove);
-//   document.querySelector(".prefectNew").removeEventListener("click", ignoreNewPrefect);
-//   document.querySelector(".prefectCurrent").removeEventListener("click", removeCurrentPrefect);
-//   document.querySelector(".prefinput").addEventListener("change", clickPrefect);
-
-//   if (event.key === "Escape") {
-//     document.querySelector("#removeFolks").classList.add("hidden");
-//   }
-//   document.querySelector(".prefinput").checked = false;
-// }
-// }
+function turnSlideOff() {
+  document.querySelector("#expelled .expelled_switch__option").checked = true;
+  document.querySelector("#expelled .expelled_switch span").addEventListener("click", showExpelledStudents);
+}
 
 // INITIATE HACK FUNCTIONS
 function initHacked(event) {
