@@ -365,7 +365,8 @@ input:checked + .slider:before {
 }
 
 /* POP UP */
-#popUp {
+#popUp,
+#removeFolks {
   position: fixed;
   inset: 0 0 0 0;
   width: 100%;
@@ -376,8 +377,12 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
 }
+#removeFolks {
+  z-index: 51;
+}
 
-#popUp .close {
+#popUp .close,
+#removeFolks .close {
   position: absolute;
   top: -20px;
   right: -20px;
@@ -454,6 +459,18 @@ input:checked + .slider:before {
   -webkit-transform: translateX(20px);
   -ms-transform: translateX(20px);
   transform: translateX(20px);
+}
+
+/* ALERT FOR PREFECT */
+#removeFolks article {
+  position: relative;
+  border: 2px solid rgb(68, 68, 68, 0.8);
+  background: url("images/paper_texture.png");
+  background-size: cover;
+  width: 50vw;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (width>500px) {
