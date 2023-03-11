@@ -1,5 +1,13 @@
 "use strict";
 
+//Make buttons a slider insted of a input? Might resole som issue with the input....
+//Now works (Check bottom of CSS --> When clicked, check:
+//If XXX is true === give active)
+//Else If XXX is false === remove active)
+document.querySelector(".test-button").addEventListener("click", testTest);
+function testTest() {
+  document.querySelector(".test").classList.toggle("active");
+}
 const studentURL = "https://petlatkea.dk/2021/hogwarts/students.json";
 const bloodURL = "https://petlatkea.dk/2021/hogwarts/families.json";
 let allStudents = [];
@@ -397,6 +405,7 @@ function buildNewList() {
 //Show Students details
 
 function showDetails(student) {
+  console.log(`Show details for: ${student.id}`);
   //Toggle hidden from pop up
   document.querySelector("#popUp").classList.toggle("hidden");
 
@@ -426,11 +435,41 @@ function showDetails(student) {
   document.querySelector(".pop-gender").textContent = student.gender;
 
   // Student Tasks
-  checkStudentStats(student);
-  function checkStudentStats(student) {
+
+  prepareExpell();
+  function prepareExpell(student) {
+    document.querySelector(".pop-expell .pop-expell-slide").addEventListener("click", newExpell);
+
+    function newExpell() {
+      //If checked to false --> it is set to CHECKED now, so check for other prefects
+
+      if (document.querySelector(".pop-expell-switch").checked === false) {
+        document.querySelector(".pop-expell .pop-expell-slide").removeEventListener("click", newExpell);
+        console.log(document.querySelector(".pop-expell-switch").checked);
+        expellStudentClick(student);
+      }
+    }
+  }
+
+  prepareInq();
+  function prepareInq(student) {}
+
+  // // Student Tasks
+  // checkStudentStats(student);
+  // function checkStudentStats(student) {
+  preparePrefect();
+  function preparePrefect(student) {
+    console.log(student.id);
+
+    // 1) Update visual for student prefect status
+    // 2) Add event listneer for click on slider (Innput change are not working)
+    // 3) Check for other prefects and if:
+    // a) Are there any other from the same gender in the specific house? == Open alert and Ask which to keep (Can only be of the same gender ofc)
+    //a.1) If keep the old prefect, close alert, do nothing and make sure visual matches what is happening.
+    //a.2) If replace the old -> Set prefect status to false, update prefect status for new, update visual
+    // c) No other is prefect from house or gender == Good to go, make prefect
     //Add prfect listener
     document.querySelector(".pop-prefect__container .prefect-slide").addEventListener("click", newPrefect);
-    document.querySelector(".pop-expell .pop-expell-slide").addEventListener("click", newExpell);
 
     //Update visual
     if (student.prefect === true) {
@@ -457,19 +496,6 @@ function showDetails(student) {
         console.log(document.querySelector(".prefinput").checked);
         checkPrefect(student);
         buildNewList();
-      }
-    }
-
-    function newExpell() {
-      //If checked to false --> it is set to CHECKED now, so check for other prefects
-      document.querySelector(".pop-expell .pop-expell-slide").removeEventListener("click", newExpell);
-
-      if (document.querySelector(".pop-expell-switch").checked === false) {
-        document.querySelector(".pop-expell .pop-expell-slide").removeEventListener("click", newExpell);
-        console.log(document.querySelector(".pop-expell-switch").checked);
-        expellStudentClick(student);
-      } else {
-        document.querySelector(".pop-expell .pop-expell-slide").addEventListener("click", newExpell);
       }
     }
 
@@ -595,28 +621,28 @@ function checkPrefect(chosenStudent) {
   }
 }
 
-function expellStudentClick(chosenStudent) {
-  console.log(chosenStudent);
+function expellStudentClick(theStudent) {
+  console.log(theStudent);
 
   //Pop up to make sure if you want to expell student
   expellPopUp();
 
   function expellPopUp() {
-    console.log(chosenStudent);
+    console.log(theStudent);
     document.querySelector(".pop-expell-switch").checked = true;
     document.querySelector("#expellModal").classList.remove("hidden");
     document.querySelectorAll(".expell-name").forEach((name) => {
-      name.textContent = chosenStudent.firstname;
+      name.textContent = theStudent.firstname;
     });
     document.querySelector(".expell-student-btn").addEventListener("click", expellStudent);
     document.querySelector(".iregret-button").addEventListener("click", iRegretThis);
   }
   //If no --> Go back and macke checkbox be unchcked.
   function iRegretThis() {
-    console.log(chosenStudent);
-    chosenStudent.expelled = false;
+    console.log(theStudent);
+    theStudent.expelled = false;
     document.querySelector(".pop-expell-switch").checked = false;
-    document.querySelector(".pop-expell .pop-expell-slide").removeEventListener("click", expellStudent(chosenStudent));
+    document.querySelector(".pop-expell .pop-expell-slide").removeEventListener("click", expellStudent(theStudent));
     document.querySelector("#expellModal").classList.add("hidden");
     document.querySelectorAll(".expell-name").forEach((name) => {
       name.textContent = "";
@@ -627,8 +653,8 @@ function expellStudentClick(chosenStudent) {
 
   //if yes --> Get student from allStudents, remove and add to new list ++ update allStudents without student.
   function expellStudent() {
-    console.log(chosenStudent);
-    chosenStudent.expelled = true;
+    console.log(theStudent);
+    theStudent.expelled = true;
     removeFromAllStudents();
     // addToExpelledStudents(student);
     buildNewList();
