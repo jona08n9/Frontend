@@ -182,6 +182,13 @@ main {
   display: flex;
 }
 
+.student-number__header {
+  margin: 0;
+}
+.student-number__header.second {
+  color: red;
+}
+
 #options {
   flex-direction: column;
   justify-content: flex-start;
@@ -424,7 +431,8 @@ main {
 /* POP UP */
 #popUp,
 #removeModal,
-#expellModal {
+#expellModal,
+#hackerModal {
   position: fixed;
   inset: 0 0 0 0;
   width: 100%;
@@ -436,7 +444,8 @@ main {
   align-items: center;
 }
 #removeModal,
-#expellModal {
+#expellModal,
+#hackerModal {
   z-index: 51;
 }
 
@@ -481,6 +490,7 @@ main {
 .pop-image-student {
   grid-column: 1 / 4;
   grid-row: 1 / 4;
+  max-width: 140px;
 }
 .pop-image-housecrest {
   grid-column: 3 / 5;
@@ -514,7 +524,8 @@ main {
 
 /* ALERT FOR PREFECT */
 #removeModal article,
-#expellModal article {
+#expellModal article,
+#hackerModal article {
   position: relative;
   border: 2px solid rgb(68, 68, 68, 0.8);
   background: url("images/paper_texture.png");
@@ -556,6 +567,10 @@ button.iregret-button:hover {
 }
 #removeModal.Slytherin button:hover {
   background-color: rgba(var(--colSlyt), 0.37);
+}
+
+#hackerModal p {
+  font-size: 2.8em;
 }
 
 @media screen and (width>500px) {

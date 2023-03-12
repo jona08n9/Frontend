@@ -21,6 +21,22 @@ const settings = {
   sortDir: "desc",
 };
 
+let hackedStudent = {
+  id: "",
+  firstname: "John",
+  lastname: "Mogensen",
+  middlename: "Hitler",
+  gender: "boy",
+  nickname: "HackerMan3117",
+  image: "hackerman.jpg",
+  blood: "pure",
+  house: "Gryffindor",
+  prefect: false,
+  inquisitorial: false,
+  expelled: false,
+  status: "hacker",
+};
+
 window.addEventListener("DOMContentLoaded", loadPage);
 
 function loadPage() {
@@ -48,7 +64,8 @@ function addDocumentListeners() {
   });
   document.querySelector(".span__direction").textContent = `${settings.sortDir.charAt(0).toUpperCase()}${settings.sortDir.slice(1).toLowerCase()}`;
   document.querySelector(".button--expelled").addEventListener("click", showExpelledStudents);
-  document.addEventListener("keydown", initHacked);
+
+  document.addEventListener("keydown", hackTheSystem);
 }
 
 // LISTEN TO WINDOW REZISE
@@ -97,6 +114,7 @@ function cleanGrawpList() {
       prefect: false,
       inquisitorial: false,
       expelled: false,
+      status: "",
     };
 
     id++;
@@ -146,6 +164,12 @@ function checkStudentNumbers(students) {
       // console.log(`S=${slytNum}`);
     }
   }
+
+  if (expelledStudents.length > 0) {
+    document.querySelector(".student-number__header.second").classList.remove("hidden");
+  } else {
+    document.querySelector(".student-number__header.second").classList.add("hidden");
+  }
   insertStudentNumbers();
 }
 function insertStudentNumbers() {
@@ -155,6 +179,7 @@ function insertStudentNumbers() {
   document.querySelector(".student-house__container.hufflepuff .student-house__number").textContent = huffNum;
   document.querySelector(".student-house__container.ravenclaw .student-house__number").textContent = raveNum;
   document.querySelector(".student-house__container.slytherin .student-house__number").textContent = slytNum;
+  document.querySelector(".student-expelled-number__header--number").textContent = expelledStudents.length;
 }
 
 // FUNCRTIONS FOR NAMES, IMAGES, HOUSE, GENDER
@@ -248,13 +273,6 @@ function displayCleanStudentList(students) {
   // clear the list
   document.querySelector("#student-display__container").innerHTML = "";
 
-  for (let i = 0; students.length > i; i++) {
-    if (students[i].id > theOneStudent.id) {
-      students[i].id -= 1;
-    }
-  }
-  theOneStudent = [];
-
   // build a new list
   students.forEach(displayStudent);
 }
@@ -263,13 +281,6 @@ function displayStudent(student) {
   // create clone
   // const clone = document.querySelector("template#student").content.cloneNode(true);
   const clone = document.querySelector("template#student").content.cloneNode(true);
-
-  if (theOneStudent.length !== 0) {
-    if (student.id >= theOneStudent.id) {
-      // console.log(`Current id:${student.id} minus ${theOneStudent.id} = ${student.id - theOneStudent.id}`);
-      student.id -= 1;
-    }
-  }
 
   if (student.firstname === "Leanne") {
     clone.querySelector(".student__card__name").textContent = student.firstname;
@@ -306,7 +317,7 @@ function displayStudent(student) {
 
   clone.querySelector("#student__card").classList.add(`${student.house.toLowerCase()}`);
 
-  clone.querySelector(".student-id").textContent = student.id;
+  // clone.querySelector(".student-id").textContent = student.id;
 
   //Add EventListener for showing specific student
   clone.querySelector("#student__card").addEventListener("click", () => showDetails(student));
@@ -444,18 +455,27 @@ function showDetails(student) {
   document.querySelector(".pop-blood").textContent = allStudents[student.id].blood;
   document.querySelector(".pop-gender").textContent = allStudents[student.id].gender;
 
+  if (allStudents[student.id].prefect === true) {
+    document.querySelector(".button-container--prefect").classList.add("active");
+  }
+
+  if (allStudents[student.id].house === "Slytherin" && allStudents[student.id].blood === "Pure") {
+    document.querySelector(".pop-inquisitorial__container").classList.remove("hidden");
+    if (allStudents[student.id].inquisitorial === true) {
+      document.querySelector(".pop-inquisitorial").textContent = `Student is part of inquisitorial squad`;
+      document.querySelector(".button-container--inq").classList.add("active");
+    } else {
+      document.querySelector(".pop-inquisitorial").textContent = `Student is NOT part of inquisitorial squad`;
+      document.querySelector(".button-container--inq").classList.remove("active");
+    }
+  } else {
+    document.querySelector(".pop-inquisitorial__container").classList.add("hidden");
+  }
+
   // Student Tasks
   document.querySelector(".button--pop-expelled").addEventListener("click", expellChosenStudent);
-
-  // prepareInq();
-  // function prepareInq(student) {}
-
-  // // // Student Tasks
-  // // checkStudentStats(student);
-  // // function checkStudentStats(student) {
-  // preparePrefect();
-  // function preparePrefect(student) {
-  //   console.log(student.id);
+  document.querySelector(".button--prefect").addEventListener("click", prefectChosenStudent);
+  document.querySelector(".button-container--inq").addEventListener("click", inqChosenStudent);
 
   // 1) Update visual for student prefect status
   // 2) Add event listneer for click on slider (Innput change are not working)
@@ -465,7 +485,6 @@ function showDetails(student) {
   //a.2) If replace the old -> Set prefect status to false, update prefect status for new, update visual
   // c) No other is prefect from house or gender == Good to go, make prefect
   //Add prfect listener
-  // document.querySelector(".pop-prefect__container .prefect-slide").addEventListener("click", newPrefect);
 
   // //Update visual
   // if (student.prefect === true) {
@@ -474,25 +493,6 @@ function showDetails(student) {
   // } else if (student.prefect === false) {
   //   document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${student.house}.`;
   //   document.querySelector(".prefinput").checked = false;
-  // }
-
-  // function newPrefect() {
-  //   //If checked to false --> it is set to CHECKED now, so check for other prefects
-
-  //   if (document.querySelector(".prefinput").checked === true) {
-  //     document.querySelector(".pop-prefect__container .prefect-slide").removeEventListener("click", newPrefect);
-  //     student.prefect = false;
-  //     console.log(document.querySelector(".prefinput").checked);
-  //     document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${student.house}.`;
-  //     buildNewList();
-  //   }
-  //   //If checkbox set to TRUE, then we check if it is possible:
-  //   else if (document.querySelector(".prefinput").checked === false) {
-  //     document.querySelector(".pop-prefect__container .prefect-slide").removeEventListener("click", newPrefect);
-  //     console.log(document.querySelector(".prefinput").checked);
-  //     checkPrefect(student);
-  //     buildNewList();
-  //   }
   // }
 
   // // INQ UPDATE
@@ -528,25 +528,63 @@ function expellChosenStudent() {
   //If checked to false --> it is set to CHECKED now, so check for other prefects
   let container = document.querySelector("#popUp .top-button-container");
   console.log(`Èxpell the following student: ${theOneStudent.firstname}?`);
-  if (container.classList.contains("active") === false) {
+  if (theOneStudent.status === "hacker") {
+    cantExpellMe();
+  } else if (theOneStudent.status === "" && container.classList.contains("active") === false) {
     container.classList.add("active");
     expellStudentClick(theOneStudent);
+  }
+}
+
+function prefectChosenStudent() {
+  let container = document.querySelector(".button-container--prefect");
+  let tempId = theOneStudent.id;
+  console.log(`Prefect on student: ${theOneStudent.firstname}`);
+
+  if (container.classList.contains("active") === true) {
+    container.classList.remove("active");
+    allStudents[tempId].prefect = false;
+    document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${theOneStudent.house}.`;
+    buildNewList();
+  } else if (container.classList.contains("active") === false) {
+    checkPrefect();
+  }
+}
+
+function inqChosenStudent() {
+  let container = document.querySelector(".button-container--inq");
+  let tempId = theOneStudent.id;
+  console.log(`Inq on student: ${theOneStudent.firstname}`);
+
+  if (allStudents[tempId].inquisitorial === false) {
+    document.querySelector(".pop-inquisitorial").textContent = `Student is part of inquisitorial squad`;
+    allStudents[tempId].inquisitorial = true;
+    container.classList.add("active");
+    buildNewList();
+  } else if (allStudents[tempId].inquisitorial === true) {
+    document.querySelector(".pop-inquisitorial").textContent = `Student is NOT part of inquisitorial squad`;
+    allStudents[tempId].inquisitorial = false;
+    container.classList.add("active");
+    buildNewList();
   }
 }
 
 function closePop() {
   console.log(theOneStudent);
   document.querySelector("#popUp .close").removeEventListener("click", closePop);
+  document.querySelector(".button-container--prefect").classList.remove("active");
   document.querySelector("#popUp").classList.toggle("hidden");
   buildNewList();
 }
 
-function checkPrefect(chosenStudent) {
-  console.log(chosenStudent);
+function checkPrefect() {
+  let container = document.querySelector(".button-container--prefect");
+  let tempId = theOneStudent.id;
+
   //Make three lists: One for all prefects, one for how many in the same house and one for how many of the same gender
   const prefects = allStudents.filter((person) => person.prefect);
-  const housePrefects = prefects.filter((person) => person.house === chosenStudent.house);
-  const otherGender = housePrefects.filter((person) => person.gender === chosenStudent.gender).shift();
+  const housePrefects = prefects.filter((person) => person.house === theOneStudent.house);
+  const otherGender = housePrefects.filter((person) => person.gender === theOneStudent.gender).shift();
 
   console.log(prefects);
   console.log(housePrefects);
@@ -554,75 +592,60 @@ function checkPrefect(chosenStudent) {
 
   if (otherGender !== undefined || housePrefects.length >= 2) {
     console.log("There can only be one John");
-    openRemoveModal(chosenStudent, otherGender);
+    openRemoveModal();
   } else {
     console.log("OKEIDOKEI -- TRUTH");
-    makeNewPrefect(chosenStudent);
+    makeNewPrefect();
   }
 
-  function openRemoveModal(newPre, extPre) {
+  function openRemoveModal() {
     console.log("OpenRemoveModal");
     document.querySelector("#removeModal").classList.remove("hidden");
-    document.querySelector("#removeModal").classList.add(`${newPre.house}`);
-    document.querySelector("#removeModal .close").addEventListener("click", closeRemoveModal1);
+    document.querySelector("#removeModal").classList.add(`${allStudents[tempId].house}`);
     document.querySelectorAll(".ext-pref").forEach((text) => {
-      text.textContent = extPre.firstname;
+      text.textContent = otherGender.firstname;
     });
-    document.querySelector(".new-pref").textContent = newPre.firstname;
+    document.querySelector(".new-pref").textContent = allStudents[tempId].firstname;
 
     document.querySelector(".remove-new-pref-but").addEventListener("click", removeNewPrefect);
     document.querySelector(".remove-ext-pref-but").addEventListener("click", removeExistingPrefect);
   }
 
   function removeNewPrefect() {
-    console.log(`removeNewPrefect: ${chosenStudent.firstname}`);
-    chosenStudent.prefect = false;
-    document.querySelector(".prefinput").checked = false;
-    document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${chosenStudent.house}.`;
+    console.log(`removeNewPrefect: ${theOneStudent.firstname}`);
+    allStudents[tempId].prefect = false;
+    document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${theOneStudent.house}.`;
     newPrefect2();
-    buildNewList();
   }
 
   function removeExistingPrefect() {
-    console.log(`removeExistingPrefect: ${otherGender.firstname}, with: ${chosenStudent.firsname}`);
-    chosenStudent.prefect = true;
-    document.querySelector(".prefinput").checked = true;
-    document.querySelector(".pop-prefect").textContent = `Student is prefect for ${student.house}.`;
+    console.log(`removeExistingPrefect: Replace: ${otherGender.firstname}, with: ${allStudents[tempId].firstname}`);
+    allStudents[tempId].prefect = true;
+    container.classList.add("active");
+    document.querySelector(".pop-prefect").textContent = `Student is prefect for ${allStudents[tempId].house}.`;
     otherGender.prefect = false;
-    buildNewList();
     closeRemoveModal();
+    buildNewList();
   }
 
   // makeNewPrefect(chosenStudent, otherGender);
-  function makeNewPrefect(newPre) {
-    newPre.prefect = true;
-    document.querySelector(".pop-prefect").textContent = `Student is prefect for ${chosenStudent.house}.`;
+  function makeNewPrefect() {
+    allStudents[tempId].prefect = true;
+    document.querySelector(".button-container--prefect").classList.add("active");
+    document.querySelector(".pop-prefect").textContent = `Student is prefect for ${theOneStudent.house}.`;
     buildNewList();
   }
 
   function closeRemoveModal() {
     document.querySelector("#removeModal").className = "";
-    document.querySelector("#removeModal .close").removeEventListener("click", closeRemoveModal);
     document.querySelectorAll(".ext-pref").forEach((text) => {
       text.textContent = "";
     });
     document.querySelector(".new-pref").textContent = "";
-    document.querySelector("#removeModal").classList.add("hidden");
-  }
-
-  function closeRemoveModal1() {
-    document.querySelector("#removeModal").className = "";
-    document.querySelector("#removeModal .close").removeEventListener("click", closeRemoveModal);
-    document.querySelectorAll(".ext-pref").forEach((text) => {
-      text.textContent = "";
-    });
-    document.querySelector(".new-pref").textContent = "";
-    document.querySelector(".prefinput").checked = false;
     document.querySelector("#removeModal").classList.add("hidden");
   }
 
   function newPrefect2() {
-    document.querySelector(".pop-prefect__container .prefect-slide").removeEventListener("click", newPrefect2);
     closeRemoveModal();
     closePop();
   }
@@ -659,6 +682,16 @@ function reallyExpellStudent() {
   allStudents[theOneStudent.id].expelled = true;
   document.querySelector("#popUp .top-button-container").classList.remove("active");
   removeFromAllStudents();
+
+  console.log("Why am i running?");
+
+  for (let i = 0; allStudents.length > i; i++) {
+    if (allStudents[i].id > theOneStudent.id) {
+      allStudents[i].id -= 1;
+    }
+  }
+  theOneStudent = [];
+
   // addToExpelledStudents(student);
   checkStudentNumbers(allStudents);
   buildNewList();
@@ -758,7 +791,7 @@ function displayExpelledStudents(student) {
 }
 
 // INITIATE HACK FUNCTIONS
-function initHacked(event) {
+function hackTheSystem(event) {
   if (hackedArray.length === 0 && event.key === "a") {
     console.log("A...");
     hackedArray.push(event.key);
@@ -805,5 +838,34 @@ function initHacked(event) {
 function xXHACKEDXx() {
   console.log("YOU HAVE BEEN HACKED BROOO");
   hackedArray = [];
-  document.removeEventListener("keydown", initHacked);
+  document.removeEventListener("keydown", hackTheSystem);
+
+  //Insert hacker to studentlist
+  insertHackerStudent();
+
+  //Can't expell hacker
+
+  //Pureblood = random blood, rest is pureblood
+
+  //Inq status is only active for short while.
+}
+
+function insertHackerStudent() {
+  hackedStudent.id = allStudents.length;
+  console.log(hackedStudent);
+  allStudents.push(hackedStudent);
+  checkStudentNumbers(allStudents);
+  displayCleanStudentList(allStudents);
+}
+
+function cantExpellMe() {
+  console.log("Hehe... You can't expell me my dude");
+  document.querySelector("#hackerModal").classList.remove("hidden");
+  setTimeout(closeStuff, 2 * 1250);
+}
+
+function closeStuff() {
+  document.querySelector("#hackerModal").classList.add("hidden");
+  closePop();
+  window.scrollTo(0, 0);
 }
