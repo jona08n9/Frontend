@@ -45,17 +45,17 @@
                   </optgroup>
                 </select>
               </article>
-              <article id="expelled">
+              <div class="top-button-container">
                 <h4>Show expelled students?</h4>
-                <label class="expelled_switch">
+                <!-- <label class="expelled_switch">
                   <input name="expell-switch" type="checkbox" class="expelled_switch__option" />
                   <span class="slider main-expell"></span>
-                </label>
-                <div class="test">
-                  <button class="test-button"></button>
-                  <span class="test-slider"></span>
+                </label> -->
+                <div class="button-container button-container--expelled">
+                  <button class="button-button button--expelled"></button>
+                  <span class="button-slider"></span>
                 </div>
-              </article>
+              </div>
             </div>
           </div>
           <article id="student-number">
@@ -107,22 +107,6 @@
       </div>
     </main>
 
-    <!-- New tmeplate -->
-    <template id="student">
-      <article id="student__card">
-        <h4 class="expellText">EXPELLED</h4>
-        <div class="student__card__img--container">
-          <img src="" alt="" class="student__card__img" />
-          <img src="images/expelled.svg" alt="" class="student__card__img expellOverlay" />
-        </div>
-        <h4 class="student__card__name"></h4>
-        <div class="student__card__info">
-          <p><span>Blood status:</span><span class="blood">test</span></p>
-          <p><span>Prefect status:</span><span class="prefect">test</span></p>
-          <p><span>Inquisitorial status:</span><span class="inquisitorial">test</span></p>
-        </div>
-      </article>
-    </template>
     <div id="popUp" class="hidden">
       <article>
         <div class="close">X</div>
@@ -131,12 +115,16 @@
             <img class="pop-image-student" src="images/abbott_h.png" alt="" />
             <img class="pop-image-housecrest" src="images/gryffindor_crest.svg" alt="" />
           </div>
-          <div class="pop-expell">
+          <div class="top-button-container">
             <span>Expell student?</span>
-            <label class="expelled_switch">
-              <input name="expell-switch" type="checkbox" class="pop-expell-switch" />
-              <span class="slider pop-expell-slide"></span>
-            </label>
+            <div class="button-container button-container--pop-expelled">
+              <button class="button-button button--pop-expelled"></button>
+              <span class="button-slider"></span>
+            </div>
+            <!-- <label class="expelled_switch">
+                <input name="expell-switch" type="checkbox" class="pop-expell-switch" />
+                <span class="slider pop-expell-slide"></span>
+             </label> -->
           </div>
         </div>
         <div class="popText">
@@ -153,24 +141,32 @@
             <h2>Student info</h2>
             <div class="pop-prefect__container">
               <p>Prefect status: <span class="pop-prefect"></span></p>
-              <div class="pop-checkbox">
+              <div class="top-button-container">
                 <span class="">Toggle to set prefect status</span>
-                <label class="expelled_switch">
+                <div class="button-container button-container--prefect">
+                  <button class="button-button button--prefect"></button>
+                  <span class="button-slider"></span>
+                </div>
+                <!-- <label class="expelled_switch">
                   <input name="expell-switch" type="checkbox" class="prefinput" />
                   <span class="slider prefect-slide"></span>
                 </label>
-                <!-- <label for="prefectInput">Toggle to <span class="prefinput-span">make student prefect</span></label>
+                <label for="prefectInput">Toggle to <span class="prefinput-span">make student prefect</span></label>
                 <input name="prefectInput" class="prefinput" type="checkbox" /> -->
               </div>
             </div>
             <div class="pop-inquisitorial__container hidden">
               <p>Inquisitorial status: <span class="pop-inquisitorial"></span></p>
-              <div class="pop-checkbox">
-                <span class="">Toggle to set prefect status</span>
-                <label class="expelled_switch">
+              <div class="top-button-container">
+                <span class="">Toggle to set inquisitorial status</span>
+                <div class="button-container button-container--inq">
+                  <button class="button-button button-container--inq"></button>
+                  <span class="button-slider"></span>
+                </div>
+                <!-- <label class="expelled_switch">
                   <input name="expell-switch" type="checkbox" class="inqinput" />
                   <span class="slider inq-slide"></span>
-                </label>
+                </label> -->
                 <!-- <label for="inquisitorialInput">Toggle to <span class="inqinput-span">make studnet part of inquisitorial squad</span></label>
                 <input name="inquisitorialInput" class="inqinput" type="checkbox" /> -->
               </div>
@@ -180,18 +176,17 @@
       </article>
     </div>
 
+    <!-- REMOVE PREFECT MODAL -->
     <div id="removeModal" class="hidden">
       <article class="prefect_container">
-        <div class="close">X</div>
         <h3><span class="ext-pref"></span> is already a prefect. What will you do?</h3>
         <button class="remove-new-pref-but">Don't add <span class="new-pref"></span> as prefect.</button>
         <button class="remove-ext-pref-but">Remove <span class="ext-pref"></span> as prefect.</button>
       </article>
     </div>
-
+    <!-- EXPELL STUDENT MODAL  -->
     <div id="expellModal" class="hidden">
       <article class="expell_container">
-        <div class="close">X</div>
         <h3>
           You are about to expell <span class="expell-name"></span>. Are you sure you want that? <br />
           <b>WARNING: It's is not possible to un-expell a student.</b>
@@ -200,6 +195,25 @@
         <button class="iregret-button">Det var en fejl, jeg fortryder!</button>
       </article>
     </div>
+
+    <!-- New tmeplate -->
+    <template id="student">
+      <article id="student__card">
+        <h4 class="expellText">EXPELLED</h4>
+        <div class="student__card__img--container">
+          <img src="" alt="" class="student__card__img" />
+          <img src="images/expelled.svg" alt="" class="student__card__img expellOverlay" />
+        </div>
+        <h4 class="student__card__name"></h4>
+        <span class="student-id"></span>
+        <div class="student__card__info">
+          <p><span>Blood status:</span><span class="blood">test</span></p>
+          <p><span>Prefect status:</span><span class="prefect">test</span></p>
+          <p><span>Inquisitorial status:</span><span class="inquisitorial">test</span></p>
+        </div>
+      </article>
+    </template>
+
     <script src="script.js"></script>
   </body>
 </html>

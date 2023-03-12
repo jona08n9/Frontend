@@ -69,6 +69,113 @@ main {
   padding-inline: 20px;
 }
 
+/** SLIDER OVER BUTTON CSS **/
+.button-container {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.button-button {
+  background-color: transparent;
+  border: transparent;
+  width: 100%;
+  height: 100%;
+}
+.button-button:hover {
+  cursor: pointer;
+}
+
+.button-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d28d8d;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 35px;
+  pointer-events: none;
+}
+
+.button-slider:before {
+  pointer-events: none;
+  position: absolute;
+  content: "";
+  height: 23px;
+  width: 23px;
+  left: 2px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.active .button-slider {
+  background-color: #1d45e7;
+}
+
+.active .button-slider {
+  box-shadow: 0 0 1px #1d45e7;
+}
+
+.active .button-slider:before {
+  -webkit-transform: translateX(32px);
+  -ms-transform: translateX(32px);
+  transform: translateX(32px);
+}
+
+.active .button-container--pop-expelled {
+  animation-name: expellJitter;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+
+.active .button-container--pop-expelled .button-slider:before {
+  -webkit-transform: translateX(17px);
+  -ms-transform: translateX(17px);
+  transform: translateX(17px);
+}
+
+@keyframes expellJitter {
+  10% {
+    transform: translate(-1px, -2px) scale(1.01, 1.01);
+  }
+  20% {
+    transform: translate(2px, 1px) scale(0.99, 0.99);
+  }
+  30% {
+    transform: translate(-2px, -3px) scale(1.01, 1.01);
+  }
+  40% {
+    transform: translate(1px, 2px) scale(1, 1);
+  }
+  50% {
+    transform: translate(-1px, -2px) scale(0.98, 0.98);
+  }
+  60% {
+    transform: translate(0px, 2px) scale(1.02, 1.02);
+  }
+  70% {
+    transform: translate(-1px, -2px) scale(1, 1);
+  }
+  80% {
+    transform: translate(1px, 3px) scale(0.99, 0.99);
+  }
+  90% {
+    transform: translate(-3px, -2px) scale(1.1, 1.1);
+  }
+  100% {
+    transform: translate(2px, 1px) scale(0.95, 0.95);
+  }
+}
+
 /** OPTIONS **/
 #options,
 #student-number {
@@ -164,60 +271,6 @@ main {
 }
 .student-house__container.slytherin {
   background-color: rgba(var(--colSlyt), 0.37);
-}
-
-/*** EXPELED SWITCH CSS ***/
-.expelled_switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 30px;
-}
-
-.expelled_switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #d28d8d;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 25px;
-  width: 25px;
-  left: 2px;
-  bottom: 2px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #1d45e7;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #1d45e7;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(30px);
-  -ms-transform: translateX(30px);
-  transform: translateX(30px);
 }
 
 /*** SORTING BUTTONS ***/
@@ -434,7 +487,7 @@ input:checked + .slider:before {
   grid-row: 3 / 5;
 }
 
-.pop-expell {
+.top-button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -457,44 +510,6 @@ input:checked + .slider:before {
 .pop-names span,
 .pop-tasks span {
   font-weight: 400;
-}
-
-#popUp .expelled_switch {
-  width: 40px;
-  height: 20px;
-}
-
-#popUp .slider:before {
-  height: 17px;
-  width: 17px;
-  left: 3px;
-  bottom: 1px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-#popUp input:checked + .slider {
-  background-color: #0ea531;
-}
-
-#popUp input:focus + .slider {
-  box-shadow: 0 0 1px #0ea531;
-}
-
-#popUp input:checked + .slider:before {
-  -webkit-transform: translateX(18px);
-  -ms-transform: translateX(18px);
-  transform: translateX(18px);
-}
-
-.pop-checkbox {
-  margin-inline: 10px 0;
-}
-
-.pop-checkbox span {
-  padding-inline: 0 10px;
 }
 
 /* ALERT FOR PREFECT */
@@ -623,83 +638,8 @@ button.iregret-button:hover {
     grid-template-columns: repeat(2, 1fr);
     max-width: 900px;
   }
-
-  #popUp .slider:before {
-    height: 18px;
-    width: 18px;
-    left: 1px;
-    bottom: 1px;
-  }
-
-  #popUp input:checked + .slider:before {
-    -webkit-transform: translateX(20px);
-    -ms-transform: translateX(20px);
-    transform: translateX(20px);
-  }
-
-  #popUp input:checked + .slider:before {
-    width: 17px;
-  }
 }
 
 .hidden {
   display: none !important;
-}
-
-.test {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 30px;
-}
-
-.test-button {
-  background-color: transparent;
-  border: transparent;
-  width: 100%;
-  height: 100%;
-}
-.test-button:hover {
-  cursor: pointer;
-}
-.test-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #d28d8d;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 35px;
-  pointer-events: none;
-}
-
-.test-slider:before {
-  pointer-events: none;
-  position: absolute;
-  content: "";
-  height: 25px;
-  width: 25px;
-  left: 2px;
-  bottom: 2px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-.active .test-slider {
-  background-color: #1d45e7;
-}
-
-.active .test-slider {
-  box-shadow: 0 0 1px #1d45e7;
-}
-
-.active .test-slider:before {
-  -webkit-transform: translateX(30px);
-  -ms-transform: translateX(30px);
-  transform: translateX(30px);
 }
