@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <title>Cleaning Hogwarts Data</title>
   </head>
-  <body>
+  <body class="body">
     <header id="banner">
       <img src="images/hogwarts_crest.svg" alt="" id="logo" width="150" />
       <h1>Hogwarts Student List</h1>
@@ -47,10 +47,6 @@
               </article>
               <div class="top-button-container">
                 <h4>Show expelled students?</h4>
-                <!-- <label class="expelled_switch">
-                  <input name="expell-switch" type="checkbox" class="expelled_switch__option" />
-                  <span class="slider main-expell"></span>
-                </label> -->
                 <div class="button-container button-container--expelled">
                   <button class="button-button button--expelled"></button>
                   <span class="button-slider"></span>
@@ -104,6 +100,14 @@
           </select>
         </div>
         <p><span>Direction:</span> <span class="span__direction"></span></p>
+        <div class="search-div">
+          <input type="text" name="" id="searchbar" placeholder="Search for students" />
+          <div class="search-buttons">
+            <button id="search-btn">Search</button>
+            <button id="clear-search-input">Clear</button>
+            <button id="clear-search-btn">Get full List</button>
+          </div>
+        </div>
         <section id="student-display__container"></section>
       </div>
     </main>
@@ -122,10 +126,6 @@
               <button class="button-button button--pop-expelled"></button>
               <span class="button-slider"></span>
             </div>
-            <!-- <label class="expelled_switch">
-                <input name="expell-switch" type="checkbox" class="pop-expell-switch" />
-                <span class="slider pop-expell-slide"></span>
-             </label> -->
           </div>
         </div>
         <div class="popText">
@@ -148,12 +148,6 @@
                   <button class="button-button button--prefect"></button>
                   <span class="button-slider"></span>
                 </div>
-                <!-- <label class="expelled_switch">
-                  <input name="expell-switch" type="checkbox" class="prefinput" />
-                  <span class="slider prefect-slide"></span>
-                </label>
-                <label for="prefectInput">Toggle to <span class="prefinput-span">make student prefect</span></label>
-                <input name="prefectInput" class="prefinput" type="checkbox" /> -->
               </div>
             </div>
             <div class="pop-inquisitorial__container hidden">
@@ -164,12 +158,6 @@
                   <button class="button-button button-container--inq"></button>
                   <span class="button-slider"></span>
                 </div>
-                <!-- <label class="expelled_switch">
-                  <input name="expell-switch" type="checkbox" class="inqinput" />
-                  <span class="slider inq-slide"></span>
-                </label> -->
-                <!-- <label for="inquisitorialInput">Toggle to <span class="inqinput-span">make studnet part of inquisitorial squad</span></label>
-                <input name="inquisitorialInput" class="inqinput" type="checkbox" /> -->
               </div>
             </div>
           </div>
@@ -196,14 +184,14 @@
         <button class="iregret-button">Det var en fejl, jeg fortryder!</button>
       </article>
     </div>
-    <!-- HACKER modal -->
+    <!-- HACKER MODAL -->
     <div id="hackerModal" class="hidden">
       <article>
         <p>Hey! What is that behind you?</p>
       </article>
     </div>
 
-    <!-- New tmeplate -->
+    <!-- NEW TEMPLATE -->
     <template id="student">
       <article id="student__card">
         <h4 class="expellText">EXPELLED</h4>
@@ -220,7 +208,7 @@
         </div>
       </article>
     </template>
-
+    <audio src="sounds/scatlin-iThinkNot.m4a" id="inqNope"></audio>
     <script src="script.js"></script>
   </body>
 </html>

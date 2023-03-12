@@ -129,6 +129,14 @@ main {
   transform: translateX(32px);
 }
 
+.active.haveSomeFun .button-slider:before {
+  animation-name: haveSomeFun;
+  animation-duration: 2.3s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
 .active .button-container--pop-expelled {
   animation-name: expellJitter;
   animation-duration: 0.3s;
@@ -173,6 +181,35 @@ main {
   }
   100% {
     transform: translate(2px, 1px) scale(0.95, 0.95);
+  }
+}
+
+@keyframes haveSomeFun {
+  10% {
+    transform: translateX(32px) scale(1);
+    background-image: url(images/hackerman.jpg);
+    background-size: contain;
+  }
+  20% {
+    transform: translateX(32px) scale(3);
+  }
+  30% {
+    transform: translateX(32px) scale(4);
+  }
+  40% {
+    transform: translate(32px, 30px) scale(2.5);
+  }
+  50% {
+    transform: translateY(-40px) scale(2);
+  }
+  60% {
+    transform: scale(1.5);
+  }
+  80% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
   }
 }
 
@@ -297,6 +334,37 @@ main {
 
 .sort__option:hover {
   cursor: url(https://www.madvigux.dk/frontend/hogwarts_project/images/wand_cursor2.png), auto;
+}
+
+/** SEARCH BAR **/
+.search-div {
+  margin-block: 5px 10px;
+}
+#searchbar {
+  width: 250px;
+  font-family: sanvito-pro-display, sans-serif;
+  font-size: 1.1em;
+  border: none;
+  border-bottom: 2px solid black;
+  background-color: transparent;
+  padding: 5px 0;
+}
+
+.search-buttons {
+  margin-block: 5px 10px;
+}
+
+.search-buttons button {
+  padding: 5px 12px;
+  margin-inline: 5px;
+  font-size: 1em;
+  font-family: sanvito-pro-display, sans-serif;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.search-buttons button:hover {
+  background-color: rgba(47, 47, 47, 0.8);
+  color: #fff;
 }
 
 /*** STUDENT CARDS ***/
@@ -593,6 +661,7 @@ button.iregret-button:hover {
   .collapse__mobile {
     border-bottom: none;
   }
+
   .collapse__mobile__content__inner__section {
     max-height: 100%;
     display: flex;
@@ -620,6 +689,11 @@ button.iregret-button:hover {
   #student-houses__container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-div {
+    display: flex;
+    flex-direction: row;
   }
 
   #popUp article {

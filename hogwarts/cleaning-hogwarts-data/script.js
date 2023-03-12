@@ -3,6 +3,7 @@
 const studentURL = "https://petlatkea.dk/2021/hogwarts/students.json";
 const bloodURL = "https://petlatkea.dk/2021/hogwarts/families.json";
 let allStudents = [];
+let searchStudentsList = [];
 let expelledStudents = [];
 let theOneStudent = [];
 let expelledStudentsCounter = -1;
@@ -23,13 +24,14 @@ const settings = {
 
 let hackedStudent = {
   id: "",
-  firstname: "John",
-  lastname: "Mogensen",
-  middlename: "Hitler",
+  firstname: "Hacker",
+  lastname: "Bob-John",
+  middlename: "Man",
   gender: "boy",
   nickname: "HackerMan3117",
+  searchname: "hacker bob-john man",
   image: "hackerman.jpg",
-  blood: "pure",
+  blood: "muggle",
   house: "Gryffindor",
   prefect: false,
   inquisitorial: false,
@@ -64,6 +66,8 @@ function addDocumentListeners() {
   });
   document.querySelector(".span__direction").textContent = `${settings.sortDir.charAt(0).toUpperCase()}${settings.sortDir.slice(1).toLowerCase()}`;
   document.querySelector(".button--expelled").addEventListener("click", showExpelledStudents);
+  document.querySelector("#search-btn").addEventListener("click", searchStudents);
+  document.querySelector("#clear-search-btn").addEventListener("click", clearSearch);
 
   document.addEventListener("keydown", hackTheSystem);
 }
@@ -108,6 +112,7 @@ function cleanGrawpList() {
       middlename: "none",
       gender: "",
       nickname: "none",
+      searchname: "",
       image: "none",
       blood: "",
       house: "",
@@ -134,6 +139,7 @@ function cleanGrawpList() {
     student.house = getStudentHouse(grawp);
     student.blood = getStudentBlood(student.lastname);
     allStudents.push(student);
+    student.searchname = getSearchName(student.firstname, student.middlename, student.lastname);
   });
 
   displayCleanStudentList(allStudents);
@@ -222,6 +228,16 @@ function getLastName(name) {
       const trimName = name[name.length - 1];
       return `${trimName.charAt(0).toUpperCase()}${trimName.slice(1).toLowerCase()}`;
     }
+  }
+}
+
+function getSearchName(first, middle, last) {
+  if (middle === "N/A" && last === "N/A") {
+    return `${first.toLowerCase()}`;
+  } else if (middle === "N/A" && last !== "N/A") {
+    return `${first.toLowerCase()} ${last.toLowerCase()}`;
+  } else {
+    return `${first.toLowerCase()} ${middle.toLowerCase()} ${last.toLowerCase()}`;
   }
 }
 
@@ -476,52 +492,6 @@ function showDetails(student) {
   document.querySelector(".button--pop-expelled").addEventListener("click", expellChosenStudent);
   document.querySelector(".button--prefect").addEventListener("click", prefectChosenStudent);
   document.querySelector(".button-container--inq").addEventListener("click", inqChosenStudent);
-
-  // 1) Update visual for student prefect status
-  // 2) Add event listneer for click on slider (Innput change are not working)
-  // 3) Check for other prefects and if:
-  // a) Are there any other from the same gender in the specific house? == Open alert and Ask which to keep (Can only be of the same gender ofc)
-  //a.1) If keep the old prefect, close alert, do nothing and make sure visual matches what is happening.
-  //a.2) If replace the old -> Set prefect status to false, update prefect status for new, update visual
-  // c) No other is prefect from house or gender == Good to go, make prefect
-  //Add prfect listener
-
-  // //Update visual
-  // if (student.prefect === true) {
-  //   document.querySelector(".pop-prefect").textContent = `Student is prefect for ${student.house}.`;
-  //   document.querySelector(".prefinput").checked = true;
-  // } else if (student.prefect === false) {
-  //   document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${student.house}.`;
-  //   document.querySelector(".prefinput").checked = false;
-  // }
-
-  // // INQ UPDATE
-  // if (student.house === "Slytherin" && student.blood === "Pure") {
-  //   document.querySelector(".pop-inquisitorial__container").classList.remove("hidden");
-  //   if (student.inquisitorial === true) {
-  //     document.querySelector(".pop-inquisitorial").textContent = `Student is part of inquisitorial squad`;
-  //     document.querySelector(".inqinput").checked = true;
-  //   } else {
-  //     document.querySelector(".pop-inquisitorial").textContent = `Student is NOT part of inquisitorial squad`;
-  //     document.querySelector(".inqinput").checked = false;
-  //   }
-  // } else {
-  //   document.querySelector(".pop-inquisitorial__container").classList.add("hidden");
-  // }
-
-  // document.querySelector(".inqinput").addEventListener("change", () => {
-  //   const input = document.querySelector(".inqinput");
-
-  //   if (input.checked === true) {
-  //     document.querySelector(".pop-inquisitorial").textContent = `Student is part of inquisitorial squad`;
-  //     student.inquisitorial = true;
-  //     buildNewList();
-  //   } else if (input.checked === false) {
-  //     document.querySelector(".pop-inquisitorial").textContent = `Student is NOT part of inquisitorial squad`;
-  //     student.inquisitorial = false;
-  //     buildNewList();
-  //   }
-  // });
 }
 
 function expellChosenStudent() {
@@ -556,17 +526,36 @@ function inqChosenStudent() {
   let tempId = theOneStudent.id;
   console.log(`Inq on student: ${theOneStudent.firstname}`);
 
-  if (allStudents[tempId].inquisitorial === false) {
-    document.querySelector(".pop-inquisitorial").textContent = `Student is part of inquisitorial squad`;
-    allStudents[tempId].inquisitorial = true;
+  if (document.querySelector(".body").classList.contains("hogwartsIsHacked") === true) {
     container.classList.add("active");
-    buildNewList();
-  } else if (allStudents[tempId].inquisitorial === true) {
-    document.querySelector(".pop-inquisitorial").textContent = `Student is NOT part of inquisitorial squad`;
-    allStudents[tempId].inquisitorial = false;
-    container.classList.add("active");
-    buildNewList();
+    document.querySelector("#inqNope").currentTime = 1;
+    document.querySelector("#inqNope").volume = 0.6;
+    document.querySelector("#inqNope").play();
+    document.querySelector("#inqNope").currentTime = 0;
+    setTimeout(moveBallAround, 2000);
+  } else {
+    if (allStudents[tempId].inquisitorial === false) {
+      document.querySelector(".pop-inquisitorial").textContent = `Student is part of inquisitorial squad`;
+      allStudents[tempId].inquisitorial = true;
+      container.classList.add("active");
+      buildNewList();
+    } else if (allStudents[tempId].inquisitorial === true) {
+      document.querySelector(".pop-inquisitorial").textContent = `Student is NOT part of inquisitorial squad`;
+      allStudents[tempId].inquisitorial = false;
+      container.classList.add("active");
+      buildNewList();
+    }
   }
+}
+
+function moveBallAround() {
+  document.querySelector(".button-container--inq").classList.add("haveSomeFun");
+  document.querySelector(".button-container--inq").addEventListener("animationend", stopMovingBall);
+}
+
+function stopMovingBall() {
+  document.querySelector(".button-container--inq").classList.remove("haveSomeFun");
+  document.querySelector(".button-container--inq").classList.remove("active");
 }
 
 function closePop() {
@@ -790,6 +779,26 @@ function displayExpelledStudents(student) {
   document.querySelector("#student-display__container").appendChild(clone);
 }
 
+function searchStudents() {
+  console.log(document.querySelector("#searchbar").value);
+  let input = document.querySelector("#searchbar").value.toLowerCase();
+
+  for (let i = 0; allStudents.length > i; i++) {
+    if (allStudents[i].searchname.includes(input) === true) {
+      searchStudentsList.push(allStudents[i]);
+    }
+  }
+
+  console.log(searchStudentsList);
+  displayCleanStudentList(searchStudentsList);
+}
+
+function clearSearch() {
+  document.querySelector("#searchbar").value = "";
+  searchStudentsList = [];
+  displayCleanStudentList(allStudents);
+}
+
 // INITIATE HACK FUNCTIONS
 function hackTheSystem(event) {
   if (hackedArray.length === 0 && event.key === "a") {
@@ -843,9 +852,8 @@ function xXHACKEDXx() {
   //Insert hacker to studentlist
   insertHackerStudent();
 
-  //Can't expell hacker
-
   //Pureblood = random blood, rest is pureblood
+  setTimeout(fixBloodStatus, 2 * 1250);
 
   //Inq status is only active for short while.
 }
@@ -868,4 +876,34 @@ function closeStuff() {
   document.querySelector("#hackerModal").classList.add("hidden");
   closePop();
   window.scrollTo(0, 0);
+}
+
+function fixBloodStatus() {
+  document.querySelector("body").classList.add("hogwartsIsHacked");
+  changeBloodStatus();
+}
+
+function changeBloodStatus() {
+  for (let i = 0; allStudents.length - 2 >= i; i++) {
+    console.log(allStudents[i]);
+
+    if (allStudents[i].status === "Hacker") {
+      allStudents[i].blood = "Pure";
+    } else if (allStudents[i].blood === "Pure") {
+      let randNum = Math.floor(Math.random() * 3) + 1;
+      console.log(`${allStudents[i].blood}. Number is ${randNum}`);
+
+      if (randNum === 1) {
+        allStudents[i].blood = "Pure";
+      } else if (randNum === 2) {
+        allStudents[i].blood = "Half";
+      } else {
+        allStudents[i].blood = "Muggle";
+      }
+    } else if (allStudents[i].blood !== "Pure") {
+      console.log(`${allStudents[i].blood}. Let make it pure!`);
+      allStudents[i].blood = "Pure";
+    }
+  }
+  displayCleanStudentList(allStudents);
 }
