@@ -491,7 +491,7 @@ function showDetails(student) {
   // Student Tasks
   document.querySelector(".button--pop-expelled").addEventListener("click", expellChosenStudent);
   document.querySelector(".button--prefect").addEventListener("click", prefectChosenStudent);
-  document.querySelector(".button-container--inq").addEventListener("click", inqChosenStudent);
+  document.querySelector(".button--pop-inq").addEventListener("click", inqChosenStudent);
 }
 
 function expellChosenStudent() {
@@ -522,7 +522,7 @@ function prefectChosenStudent() {
 }
 
 function inqChosenStudent() {
-  let container = document.querySelector(".button-container--inq");
+  let container = document.querySelector(".button--pop-inq");
   let tempId = theOneStudent.id;
   console.log(`Inq on student: ${theOneStudent.firstname}`);
 
