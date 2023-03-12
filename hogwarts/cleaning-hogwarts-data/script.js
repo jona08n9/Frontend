@@ -67,7 +67,8 @@ function addDocumentListeners() {
   document.querySelector(".span__direction").textContent = `${settings.sortDir.charAt(0).toUpperCase()}${settings.sortDir.slice(1).toLowerCase()}`;
   document.querySelector(".button--expelled").addEventListener("click", showExpelledStudents);
   document.querySelector("#search-btn").addEventListener("click", searchStudents);
-  document.querySelector("#clear-search-btn").addEventListener("click", clearSearch);
+  document.querySelector("#clear-search-input").addEventListener("click", clearSearchInput);
+  document.querySelector("#clear-search-btn").addEventListener("click", resetSearchList);
 
   document.addEventListener("keydown", hackTheSystem);
 }
@@ -793,7 +794,11 @@ function searchStudents() {
   displayCleanStudentList(searchStudentsList);
 }
 
-function clearSearch() {
+function clearSearchInput() {
+  document.querySelector("#searchbar").value = "";
+}
+
+function resetSearchList() {
   document.querySelector("#searchbar").value = "";
   searchStudentsList = [];
   displayCleanStudentList(allStudents);
