@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+}
+
+#box {
+  display: flex;
+  align-items: flex-end;
+  padding: 1em;
+  min-height: 95vh;
+  background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 52%, rgba(0, 212, 255, 1) 93%, rgba(255, 156, 0, 1) 94%, rgba(221, 137, 4, 1) 100%);
+}
+
+.ball {
+  width: 10vh;
+  height: 10vh;
+  background-image: url("beachball.svg");
+  background-size: 100%;
+}
+
+.spike {
+  position: absolute;
+  left: 440px;
+  bottom: 5px;
+  background-color: transparent;
+  border: 5px solid transparent;
+  border-bottom: 15px solid black;
+}

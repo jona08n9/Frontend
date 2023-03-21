@@ -346,6 +346,7 @@ function displayStudent(student) {
 function selectFilter(event) {
   let filter = document.querySelector("#filter__container").value;
   let filterType = event.target.dataset.type;
+  // console.log(`Filter is set to: ${filter} and type ${filterType}`);
 
   setFilter(filter, filterType);
 }
@@ -353,6 +354,7 @@ function selectFilter(event) {
 function setFilter(filter, filterType) {
   settings.filterBy = filter;
   settings.filterType = filterType;
+  // console.log(`SetFilter: ${settings.filterBy} = filterBy and ${settings.filterType} = filterType`);
 
   // Build new student list
   buildNewList();
@@ -360,15 +362,18 @@ function setFilter(filter, filterType) {
 
 function filterList() {
   // if the studentType is AllS tudents, of the above then just return allStudents as is
+  // console.log(allStudents.filter(filterStudents));
   if (settings.filterType === "all") {
     return allStudents;
   } else {
+    // console.log(allStudents.filter(filterStudents));
     return allStudents.filter(filterStudents);
   }
 }
 
 function filterStudents(student) {
   // Return students which house matches the filterBY value
+  // console.log(student[`${settings.filterType}`] === settings.filterBy);
   return student[`${settings.filterType}`] === settings.filterBy;
 }
 
@@ -393,7 +398,7 @@ function setSort(sortBy, sortDir) {
   settings.sortBy = sortBy;
   settings.sortDir = sortDir;
 
-  console.log(settings);
+  // console.log(settings);
 
   buildNewList();
 }
@@ -435,14 +440,14 @@ function buildNewList() {
   const sortedList = sortList(currentList);
 
   // displays currentList
-  console.log(currentList);
+  // console.log(currentList);
   displayCleanStudentList(currentList);
 }
 
 //Show Students details
 
 function showDetails(student) {
-  console.log(`Show details for: ${allStudents[student.id].firstname}`);
+  // console.log(`Show details for: ${allStudents[student.id].firstname}`);
   theOneStudent = allStudents[student.id];
   //Toggle hidden from pop up
   document.querySelector("#popUp").classList.toggle("hidden");
@@ -498,7 +503,7 @@ function showDetails(student) {
 function expellChosenStudent() {
   //If checked to false --> it is set to CHECKED now, so check for other prefects
   let container = document.querySelector("#popUp .top-button-container");
-  console.log(`Èxpell the following student: ${theOneStudent.firstname}?`);
+  // console.log(`Èxpell the following student: ${theOneStudent.firstname}?`);
   if (theOneStudent.status === "hacker") {
     cantExpellMe();
   } else if (theOneStudent.status === "" && container.classList.contains("active") === false) {
@@ -525,7 +530,7 @@ function prefectChosenStudent() {
 function inqChosenStudent() {
   let container = document.querySelector(".button--pop-inq");
   let tempId = theOneStudent.id;
-  console.log(`Inq on student: ${theOneStudent.firstname}`);
+  // console.log(`Inq on student: ${theOneStudent.firstname}`);
 
   if (document.querySelector(".body").classList.contains("hogwartsIsHacked") === true) {
     container.classList.add("active");
@@ -560,7 +565,7 @@ function stopMovingBall() {
 }
 
 function closePop() {
-  console.log(theOneStudent);
+  // console.log(theOneStudent);
   document.querySelector("#popUp .close").removeEventListener("click", closePop);
   document.querySelector(".button-container--prefect").classList.remove("active");
   document.querySelector("#popUp").classList.toggle("hidden");
@@ -576,20 +581,20 @@ function checkPrefect() {
   const housePrefects = prefects.filter((person) => person.house === theOneStudent.house);
   const otherGender = housePrefects.filter((person) => person.gender === theOneStudent.gender).shift();
 
-  console.log(prefects);
-  console.log(housePrefects);
-  console.log(otherGender);
+  // console.log(prefects);
+  // console.log(housePrefects);
+  // console.log(otherGender);
 
   if (otherGender !== undefined || housePrefects.length >= 2) {
-    console.log("There can only be one John");
+    // console.log("There can only be one John");
     openRemoveModal();
   } else {
-    console.log("OKEIDOKEI -- TRUTH");
+    // console.log("OKEIDOKEI -- TRUTH");
     makeNewPrefect();
   }
 
   function openRemoveModal() {
-    console.log("OpenRemoveModal");
+    // console.log("OpenRemoveModal");
     document.querySelector("#removeModal").classList.remove("hidden");
     document.querySelector("#removeModal").classList.add(`${allStudents[tempId].house}`);
     document.querySelectorAll(".ext-pref").forEach((text) => {
@@ -602,14 +607,14 @@ function checkPrefect() {
   }
 
   function removeNewPrefect() {
-    console.log(`removeNewPrefect: ${theOneStudent.firstname}`);
+    // console.log(`removeNewPrefect: ${theOneStudent.firstname}`);
     allStudents[tempId].prefect = false;
     document.querySelector(".pop-prefect").textContent = `Student is NOT prefect for ${theOneStudent.house}.`;
     newPrefect2();
   }
 
   function removeExistingPrefect() {
-    console.log(`removeExistingPrefect: Replace: ${otherGender.firstname}, with: ${allStudents[tempId].firstname}`);
+    // console.log(`removeExistingPrefect: Replace: ${otherGender.firstname}, with: ${allStudents[tempId].firstname}`);
     allStudents[tempId].prefect = true;
     container.classList.add("active");
     document.querySelector(".pop-prefect").textContent = `Student is prefect for ${allStudents[tempId].house}.`;
@@ -642,7 +647,7 @@ function checkPrefect() {
 }
 
 function expellStudentClick() {
-  console.log(theOneStudent);
+  // console.log(theOneStudent);
   document.querySelector("#expellModal").classList.remove("hidden");
   document.querySelectorAll(".expell-name").forEach((name) => {
     name.textContent = theOneStudent.firstname;
@@ -655,7 +660,7 @@ function expellStudentClick() {
 // document.querySelector(".button-container--pop-expelled").removeEventListener("click", expellChosenStudent);
 //If no --> Go back and macke checkbox be unchcked.
 function iRegretThis() {
-  console.log(allStudents[theOneStudent.id]);
+  // console.log(allStudents[theOneStudent.id]);
   allStudents[theOneStudent.id].expelled = false;
   document.querySelector("#popUp .top-button-container").classList.remove("active");
   document.querySelector("#expellModal").classList.add("hidden");
@@ -668,7 +673,7 @@ function iRegretThis() {
 
 //if yes --> Get student from allStudents, remove and add to new list ++ update allStudents without student.
 function reallyExpellStudent() {
-  console.log(allStudents[theOneStudent.firstname]);
+  // console.log(allStudents[theOneStudent.firstname]);
   allStudents[theOneStudent.id].expelled = true;
   document.querySelector("#popUp .top-button-container").classList.remove("active");
   removeFromAllStudents();
@@ -700,19 +705,19 @@ function removeFromAllStudents() {
   for (let i = 0; i < allStudents.length; i++) {
     if (allStudents[i].expelled === true) {
       const removedStudent = allStudents.splice(i, 1);
-      console.log(removedStudent);
+      // console.log(removedStudent);
       expelledStudents.push(removedStudent);
     }
   }
 
-  console.log(allStudents);
-  console.log(expelledStudents);
+  // console.log(allStudents);
+  // console.log(expelledStudents);
   displayCleanStudentList(allStudents);
   checkStudentNumbers(allStudents);
 }
 
 function showExpelledStudents(event) {
-  console.log(event.target);
+  // console.log(event.target);
   let container = document.querySelector(".button-container--expelled");
   document.querySelector(".button--expelled").removeEventListener("click", showExpelledStudents);
 
@@ -722,7 +727,7 @@ function showExpelledStudents(event) {
       document.querySelector(".button--expelled").addEventListener("click", showExpelledStudents);
     } else {
       container.classList.add("active");
-      console.log(expelledStudents);
+      // console.log(expelledStudents);
       displayCleanStudentExpelledList(expelledStudents);
       document.querySelector(".button--expelled").addEventListener("click", showExpelledStudents);
     }
@@ -743,7 +748,7 @@ function displayCleanStudentExpelledList() {
 
 function displayExpelledStudents(student) {
   // create clone
-  console.log(student[0].firstname);
+  // console.log(student[0].firstname);
   const clone = document.querySelector("template#student").content.cloneNode(true);
   if (student[0].firstname === "Leanne") {
     clone.querySelector(".student__card__name").textContent = student[0].firstname;
@@ -781,7 +786,7 @@ function displayExpelledStudents(student) {
 }
 
 function searchStudents() {
-  console.log(document.querySelector("#searchbar").value);
+  // console.log(document.querySelector("#searchbar").value);
   let input = document.querySelector("#searchbar").value.toLowerCase();
 
   for (let i = 0; allStudents.length > i; i++) {
@@ -790,7 +795,7 @@ function searchStudents() {
     }
   }
 
-  console.log(searchStudentsList);
+  // console.log(searchStudentsList);
   displayCleanStudentList(searchStudentsList);
 }
 
