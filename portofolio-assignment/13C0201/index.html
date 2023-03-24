@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Template</title>
+    <!--Template adapted from https://www.freecodecamp.org/news/basic-html5-template-boilerplate-code-example/ -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div id="logo"><em>Tea42</em></div>
+        <ul>
+          <li>Tea</li>
+          <li>Pots</li>
+          <li>About</li>
+        </ul>
+        <input type="button" value="Sign Up" />
+      </nav>
+      <section>
+        <h1>Welcome to Tea42</h1>
+        <p>
+          Hic litteras ad cum convallis sinistras, <br />
+          natus contemptor sem symbola consequatur
+        </p>
+      </section>
+    </header>
+    <section id="selection">
+      <h2>Filter Tea Pots</h2>
+      <form>
+        <fieldset>
+          <legend>Inclusion</legend>
+          <label><input type="checkbox" name="include" id="include" /><span></span> Include more</label>
+        </fieldset>
+        <fieldset>
+          <legend>Type of pots</legend>
+          <label><input type="radio" name="type" id="all" value="all" checked /><span></span> All</label><br />
+          <label><input type="radio" name="type" id="lorm" value="lorem" /><span></span> Green tea</label><br />
+          <label><input type="radio" name="type" id="ipsum" value="ipsum" /><span></span> Black tea</label>
+        </fieldset>
+      </form>
+    </section>
+    <section id="cards">
+      <h2>Our Tea Pots</h2>
+      <div class="card">
+        <div class="card_media">
+          <img src="imgs/tea01.jpeg" />
+        </div>
+        <div class="card_text">
+          <h3>Fremilut nobis me absoluto</h3>
+          <p>Hic litteras ad cum convallis sinistras, natus contemptor sem symbola.</p>
+          <input type="button" value="Learn more" />
+          <input type="button" value="Buy pot" />
+        </div>
+      </div>
+      <div class="card">
+        <div class="card_media">
+          <img src="imgs/tea02.jpeg" />
+        </div>
+        <div class="card_text">
+          <h3>Usus lius eu mauris reclamente et sed concilia</h3>
+          <p>Electionem modestius sed faucibus dignus porta recordatio temporis veritatis at m solenniter, sunt-massa memorabilem.</p>
+          <input type="button" value="Learn more" />
+          <input type="button" value="Buy pot" />
+        </div>
+      </div>
+      <div class="card">
+        <div class="card_media">
+          <img src="imgs/tea03.jpeg" />
+        </div>
+        <div class="card_text">
+          <h3>Quod eorum ad</h3>
+          <p>Quam usus ullo leo magnatibus gaudere ac.</p>
+          <input type="button" value="Learn more" />
+          <input type="button" value="Buy pot" />
+        </div>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
