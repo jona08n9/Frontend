@@ -17,30 +17,62 @@
 /* Fonts */
 html {
   font-size: 18px;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: var(--color-darker);
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 400;
+  line-height: 1.3;
+  font-family: "Montserrat", sans-serif;
+}
 
+h1 {
+  font-size: 5.063rem;
+  line-height: 5rem;
+  letter-spacing: -0.2rem;
+  margin-bottom: 1rem;
 }
 
 h2 {
-
+  font-size: 3.375rem;
+  line-height: 3.7rem;
+  letter-spacing: -0.1rem;
+  margin-bottom: 1rem;
 }
 
 h3 {
-
+  font-size: 1.875rem;
+  line-height: 2.2rem;
+  letter-spacing: -0.1rem;
+  margin-bottom: 0.5rem;
 }
 
-p{
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+p {
   color: var(--color-dark);
+  line-height: 1.3rem;
 }
 
 /* UI Elements */
-button {
+button,
+.card input {
   display: inline-block;
   height: 2rem;
   padding: 0.5rem 1rem;
@@ -49,14 +81,38 @@ button {
   text-decoration: none;
   background-color: var(--color-darker);
   color: var(--color-lighter);
+  transition: all 0.2s ease;
+}
+
+button:hover,
+.card input:hover {
+  color: var(--color-dark);
+  background-color: var(--color-lighter);
+  cursor: pointer;
+}
+
+.card_button_negative:hover {
+  border-left: 1px solid var(--color-dark);
+}
+.card_button_positive:hover {
+  border-right: 1px solid var(--color-dark);
 }
 
 .light_button {
   background-color: var(--color-lighter);
   color: var(--color-darker);
+  transition: all 0.2s ease;
 }
 
-input[type=text] {
+.light_button:hover {
+  color: var(--color-lighter);
+  background-color: var(--color-darker);
+  border-left: 1px solid var(--color-lighter);
+  border-bottom: 1px solid var(--color-lighter);
+  cursor: pointer;
+}
+
+input[type="text"] {
   box-sizing: border-box;
   width: 250px;
   height: 2rem;
@@ -68,7 +124,7 @@ input[type=text] {
 }
 
 /* Menu */
-nav{
+nav {
   display: flex;
   padding: 0.5rem;
   justify-content: space-between;
@@ -142,11 +198,42 @@ header {
 }
 
 #card_container {
-  display: grid;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin-top: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 1rem;
   justify-items: center;
+}
+.card {
+  border: 1px solid var(--color-darker);
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px var(--color-dark);
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card_image {
+  width: 100%;
+}
+
+.card_mail {
+  margin-bottom: 0.5rem;
+}
+.card_mail a {
+  color: var(--color-dark);
+  text-underline-offset: 0.2rem;
+}
+
+.card_mail a:hover {
+  text-decoration: none;
+}
+.card_text_container {
+  padding-inline: 5px;
+  padding-bottom: 5px;
 }
 
 #info {
@@ -162,6 +249,9 @@ header {
   width: 60vw;
   min-width: 300px;
 }
+.info_text p {
+  margin-bottom: 1rem;
+}
 
 #contact {
   display: flex;
@@ -171,32 +261,70 @@ header {
   justify-content: center;
 }
 
+#contact button:hover {
+  color: var(--color-darker);
+  background-color: var(--color-light);
+  cursor: pointer;
+}
+
 /* Footer */
 footer {
   display: flex;
   padding: 5vh 2rem;
-  align-items: top;
+  align-items: flex-start;
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: var(--color-darker);
 }
 
-footer h2, footer h3{
+footer h2,
+footer h3 {
   color: var(--color-lighter);
 }
 
 footer a {
   color: var(--color-light);
+  font-size: 0.875rem;
+  text-underline-offset: 0.2rem;
+}
+
+footer a:hover {
+  color: var(--color-lighter);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer li {
+  margin-bottom: 0.5rem;
 }
 
 footer section {
   display: flex;
   max-width: 50vw;
-  align-items: top;
+  align-items: flex-start;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 footer section div {
   margin: 0px 1rem 1rem 1rem;
+}
+
+#backToProject {
+  position: fixed;
+  z-index: 50;
+  border: 2px solid black;
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 5px black;
+  top: 4rem;
+  left: 0.3rem;
+  padding: 0.2rem;
+}
+
+#backToProject a {
+  text-decoration: none;
+}
+
+#backToProject:hover {
+  cursor: pointer;
 }

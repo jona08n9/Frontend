@@ -8,13 +8,38 @@
 :root {
   --font-mont: "Montserrat", sans-serif;
   --font-ssp: "Source Sans Pro", sans-serif;
-  --color-primary1: #e7ebf8;
-  --color-primary2: #ced9f6;
-  --color-secondary1: #031128;
-  --color-secondary2: #1b3050;
-  --color-accent1: #6bde6d;
-  --color-accent2: #f8c755;
+  --color-primary1: #f5f5f5;
+  --color-primary2: #f5f5f5;
+  --color-secondary1: #0a0a0a;
+  --color-secondary2: #0a0a0a;
+  --color-accent1: #99ddff;
+  --color-accent2: #ff9999;
+  --color-accent3: #99ff9b;
 }
+
+html[data-theme="dark"] {
+  --color-primary1: #0a0a0a;
+  --color-primary2: #f5f5f5;
+  --color-secondary1: #3a3939;
+  --color-secondary2: #f5f5f5;
+  --color-accent3: #99ddff;
+  --color-accent2: #ff9999;
+  --color-accent1: #99ff9b;
+}
+
+/*
+CONTRAST: 
+
+PRIMARY vs SECONDARY1 = 18.16:1
+PRIMARY vs ACCENT1 = 1.36:1
+PRIMARY vs ACCENT2 = 1.88:1
+PRIMARY vs ACCENT3 = 1.12:1
+
+SECONDARY vs ACCENT1 = 13.33:1
+SECONDARY vs ACCENT2 = 9.68:1
+SECONDARY vs ACCENT3 = 16.15:1
+
+*/
 
 /* Fonts */
 html {
@@ -27,13 +52,13 @@ h2,
 h3 h1,
 h2,
 h3 {
-  color: var(--color-secondary1);
   font-family: "Noto Serif Display", serif;
   margin-bottom: 1rem;
+  color: var(--color-secondary2);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 h1 {
-  color: var(--color-primary1);
   font-size: 3.052rem;
   line-height: 3.5rem;
   margin-bottom: 2rem;
@@ -53,16 +78,18 @@ h3 {
 }
 
 p {
-  color: var(--color-secondary2);
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
   line-height: 1.5rem;
   margin-bottom: 1.5rem;
+  color: var(--color-secondary2);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 a {
   text-decoration: none;
   color: var(--color-secondary2);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 a:hover {
@@ -78,8 +105,9 @@ button {
   font-size: 1rem;
   text-align: center;
   text-decoration: none;
-  background-color: var(--color-accent2);
-  color: var(--color-secondary2);
+  background-color: var(--color-accent1);
+  color: var(--color-secondary1);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .dark_button {
@@ -93,9 +121,10 @@ input[type="text"] {
   padding: 1rem 1rem;
   font-size: 1rem;
   text-align: left;
-  background-color: var(--color-primary1);
+  background-color: var(--color-primary2);
   border-color: var(--color-primary2);
-  color: var(--color-secondary2);
+  color: var(--color-secondary1);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 /* Menu */
@@ -108,7 +137,7 @@ nav {
 }
 
 nav a {
-  color: var(--color-primary1);
+  color: var(--color-primary2);
   text-decoration: none;
 }
 
@@ -118,9 +147,17 @@ nav a.logo {
   font-weight: bold;
 }
 
+nav img:hover {
+  cursor: pointer;
+}
+
 nav li {
   display: inline-block;
   margin: 0px 1rem;
+}
+
+nav button {
+  background-color: var(--color-accent1);
 }
 
 /* Header */
@@ -131,11 +168,8 @@ header {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  background-color: var(--color-secondary2);
-}
-
-header p {
-  color: var(--color-primary2);
+  background-color: var(--color-primary1);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 header button {
@@ -156,6 +190,7 @@ header button {
   background-color: var(--color-secondary1);
   margin-bottom: 1rem;
   padding: 3rem;
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 .header_graphics object {
   width: 100%;
@@ -169,7 +204,8 @@ header button {
 /* product section */
 #product {
   padding: 5rem 3rem;
-  background-color: var(--color-primary2);
+  background-color: var(--color-primary1);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 #product h2 {
@@ -207,7 +243,7 @@ header button {
   min-height: 150px;
   padding: 1rem;
   margin: 3rem;
-  background-color: var(--color-primary1);
+  background-color: var(--color-accent2);
   border-radius: 300px;
 }
 .product_graphics object {
@@ -222,6 +258,8 @@ header button {
   padding: 2rem;
   align-items: center;
   justify-content: space-around;
+  background-color: var(--color-secondary1);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .highlight div {
@@ -231,18 +269,23 @@ header button {
 .highlight div h2 {
   font-size: 5.005rem;
   line-height: 6rem;
+  color: var(--color-primary2);
+}
+
+.highlight a {
+  color: var(--color-primary2);
 }
 
 .dark {
-  background-color: var(--color-secondary2);
+  background-color: var(--color-secondary1);
 }
 
 .dark h2 {
-  color: var(--color-primary1);
+  color: var(--color-primary);
 }
 
 .dark a {
-  color: var(--color-primary1);
+  color: var(--color-primary);
 }
 
 /* request section */
@@ -252,39 +295,44 @@ header button {
   padding: 2rem;
   align-items: center;
   justify-content: space-around;
-  background-color: var(--color-primary1);
+  background-color: var(--color-secondary1);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 #request div {
   width: 50vw;
   min-width: 300px;
 }
+#request div h2,
+#request div p {
+  color: var(--color-primary2);
+}
 
 /* Footer */
 footer {
   display: flex;
   padding: 5vh 2rem;
-  align-items: top;
+  align-items: flex-end;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: var(--color-secondary1);
-  color: var(--color-primary2);
+  background-color: var(--color-primary1);
+  color: var(--color-secondary2);
 }
 
 footer h2,
 footer h3 {
-  color: var(--color-primary1);
+  color: var(--color-primary);
   margin-bottom: 1rem;
 }
 
 footer a {
-  color: var(--color-primary2);
+  color: var(--color-primary);
 }
 
 footer section.left {
   display: flex;
   max-width: 50vw;
-  align-items: top;
+  align-items: flex-end;
   flex-wrap: wrap;
   justify-content: space-between;
 }
@@ -307,4 +355,23 @@ footer section div {
     font-size: 3.052rem;
     line-height: 3.5rem;
   }
+}
+
+#backToProject {
+  position: fixed;
+  z-index: 50;
+  border: 2px solid black;
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 5px black;
+  top: 4rem;
+  left: 0.3rem;
+  padding: 0.2rem;
+}
+
+#backToProject a {
+  text-decoration: none;
+}
+
+#backToProject:hover {
+  cursor: pointer;
 }

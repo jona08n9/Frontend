@@ -1,83 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Template</title>
+    <title>Responsive Design</title>
     <!--Template adapted from https://www.freecodecamp.org/news/basic-html5-template-boilerplate-code-example/ -->
+    <!-- Inspired by https://textluke.com/ & https://carrot.tech/ for educational purpose-->
+    <!-- Lorem Ipsum from https://loremizr.monkeymatt.com/ -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="backToProject">
+      <a href="../subpages/project13c0101.html"
+        ><p>&#8592; Go back to <br />project page</p></a
+      >
+    </div>
+    <nav>
+      <!-- Menu component layout -->
+      <a href="index.html">Logo</a>
+      <ul>
+        <li><a href="#advantages">Advantages</a></li>
+        <li><a href="#product">Product</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+      <button type="button">Learn More &#x2794;</button>
+    </nav>
     <header>
-      <nav>
-        <div id="logo"><em>Tea42</em></div>
-        <ul>
-          <li>Tea</li>
-          <li>Pots</li>
-          <li>About</li>
-        </ul>
-        <input type="button" value="Sign Up" />
-      </nav>
-      <section>
-        <h1>Welcome to Tea42</h1>
-        <p>
-          Hic litteras ad cum convallis sinistras, <br />
-          natus contemptor sem symbola consequatur
-        </p>
-      </section>
+      <!-- Header section -->
+      <div class="header_text">
+        <h1>Corrupti e lorem ut fecerunt contrarii.</h1>
+        <p>Non utriuque solatium amet netus nobis cum metus securus fecerunt oppressus eu oportunitatis error est quae interpretes corporis - v tot ullo s Verius.</p>
+        <button type="button">Request Demo &#x2794;</button>
+      </div>
+      <!-- Add image-->
+      <div class="header_graphics"></div>
     </header>
-    <section id="selection">
-      <h2>Filter Tea Pots</h2>
-      <form>
-        <fieldset>
-          <legend>Inclusion</legend>
-          <label><input type="checkbox" name="include" id="include" /><span></span> Include more</label>
-        </fieldset>
-        <fieldset>
-          <legend>Type of pots</legend>
-          <label><input type="radio" name="type" id="all" value="all" checked /><span></span> All</label><br />
-          <label><input type="radio" name="type" id="lorm" value="lorem" /><span></span> Green tea</label><br />
-          <label><input type="radio" name="type" id="ipsum" value="ipsum" /><span></span> Black tea</label>
-        </fieldset>
+    <section id="advantages">
+      <h2>Advantages</h2>
+      <!-- Card layout -->
+      <div class="advantages_cards">
+        <article class="advantages_card">
+          <!-- Add image-->
+          <div class="advantages_card_graphics"></div>
+          <div class="advantages_card_text">
+            <h3>Legere hendrerit vectigal poenam</h3>
+            <p>Msibilem magna id eros nemo bcatissimae natoque ac adiurando facer praesidio sed reiponde recenti.</p>
+          </div>
+        </article>
+        <article class="advantages_card">
+          <!-- Add image-->
+          <div class="advantages_card_graphics"></div>
+          <div class="advantages_card_text">
+            <h3>Tandem vivendi cum praecedentia</h3>
+            <p>Amet mazim iste leo violentia ut urgebat, eum subsecutum quasi promotiones christi claritas esse d clementiam.</p>
+          </div>
+        </article>
+        <article class="advantages_card">
+          <!-- Add image-->
+          <div class="advantages_card_graphics"></div>
+          <div class="advantages_card_text">
+            <h3>Qui liberum augue eum nam arcui</h3>
+            <p>Etiam nisi nunc strictus comparuit ad magnae qui invasor atque in proin instituendarum minus mus nam-fugit ordinationis.</p>
+          </div>
+        </article>
+        <article class="advantages_card">
+          <!-- Add image-->
+          <div class="advantages_card_graphics"></div>
+          <div class="advantages_card_text">
+            <h3>Harum quae odio minim</h3>
+            <p>Eius lacaenae risus nugator nisi labore ut eodem absoluto, invidii eos malitiam QUAe nemo diligentissime hendrerit eos odio etiam.</p>
+          </div>
+        </article>
+        <article class="advantages_card">
+          <!-- Add image-->
+          <div class="advantages_card_graphics"></div>
+          <div class="advantages_card_text">
+            <h3>Ab eius nobis at romanorum</h3>
+            <p>Mordens eodem te odio quia te aut cubiculo numerus ea patitur est placito proprium hic tot fusce at quas regressum.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section id="product">
+      <h2>Per te usus sint Quas</h2>
+      <!-- Two columns: graphics to the left, text to the right -->
+
+      <!-- Add image-->
+      <div class="product__inner__section">
+        <div class="product_graphics"></div>
+
+        <div class="product_text">
+          <article>
+            <h3>1. Nisi Unde fuga mus fuga</h3>
+            <p>Risus ab ducimus quo v terrenos acerba si odit quam justo nunc ullo Modo.</p>
+          </article>
+          <article>
+            <h3>2. Clades mus orci</h3>
+            <p>Diam esse eaque plebeiorum mus urna imbibere conubia cras victoris iusto populo.</p>
+          </article>
+          <article>
+            <h3>3. Terrenos mus eventum</h3>
+            <p>Vero poenis sunt id proin dui hac purus ipsa id qui sed te octavas regnante regnet nisi'e putatur qui eos.</p>
+          </article>
+          <article>
+            <h3>4. Ridiculus nec proin</h3>
+            <p>Nemo curiosus senatus ille decipitur est iure ipsa dis sed nam quod segete eum eius usus dis donec amet.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="highlight">
+      <!-- Big headline component -->
+      <h2>Intentione fuga natus quasi et Modulumina Simulacrum memento usus instrumenta apparet nam y figuraliler custodes in est malleum fuga.</h2>
+      <!-- Two small cards -->
+      <div class="highlight_small_cards">
+        <div>
+          <h3>Landem Inncem</h3>
+          <p>46% scripta orci</p>
+        </div>
+        <div>
+          <h3>Zzril Magnis</h3>
+          <p>45% dextris iure</p>
+        </div>
+      </div>
+      <button type="button">Request Demo &#x2794;</button>
+    </section>
+    <section id="team">
+      <h2>Meet the Team</h2>
+      <!-- Components with graphics to one side and text to the other -->
+      <div class="team__inner__section">
+        <article>
+          <!-- Add image-->
+          <section class="team_graphics"></section>
+          <section class="team_text">
+            <h3>Cras</h3>
+            <ul>
+              <li>- Oti usus symbola temporibus</li>
+              <li>- Clectione 24/7</li>
+              <li>- Risus terrestres</li>
+              <li>- Neque quae peccat</li>
+            </ul>
+            <a href="#contact">Contact Cras &#x2794;</a>
+          </section>
+        </article>
+        <article>
+          <!-- Change order here so text comes first then graphics -->
+          <!-- Add image-->
+          <section class="team_graphics"></section>
+          <section class="team_text">
+            <h3>Ipsum Sapien</h3>
+            <ul>
+              <li>- Dp primis te quod pede</li>
+              <li>- Eos eius regulantur wisi eum</li>
+              <li>- Eget clari criminales</li>
+              <li>- Odio timorem nascetur</li>
+            </ul>
+            <a href="#contact">Contact Ipsum Sapien &#x2794;</a>
+          </section>
+        </article>
+      </div>
+    </section>
+    <section id="contact">
+      <h2>Iudicia quod fames?</h2>
+      <p>Vel w tibi progressionem exequi tincidunt ullo Modo'd orator depauperatio sapiente convallis.</p>
+      <!-- Contact form section layout -->
+      <form id="contact_form">
+        <!-- Two column layout, name and email a column each, message two columns. Labels should be over input-->
+        <div class="form_group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="Name" required />
+        </div>
+
+        <div class="form_group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="Email" required />
+        </div>
+
+        <div class="form_group">
+          <label for="message">Message</label>
+          <textarea id="message" name="Message" required></textarea>
+        </div>
+
+        <div class="form_group">
+          <button type="submit">Send Message</button>
+        </div>
       </form>
     </section>
-    <section id="cards">
-      <h2>Our Tea Pots</h2>
-      <div class="card">
-        <div class="card_media">
-          <img src="imgs/tea01.jpeg" />
-        </div>
-        <div class="card_text">
-          <h3>Fremilut nobis me absoluto</h3>
-          <p>Hic litteras ad cum convallis sinistras, natus contemptor sem symbola.</p>
-          <input type="button" value="Learn more" />
-          <input type="button" value="Buy pot" />
-        </div>
+    <footer>
+      <!-- Footer component -->
+      <div>
+        <h2>Logo</h2>
+        <ul>
+          <li><a>contact@logo.com</a></li>
+          <li><a>+45 23225343</a></li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="card_media">
-          <img src="imgs/tea02.jpeg" />
+      <section>
+        <div>
+          <h3>Eos Purus</h3>
+          <ul>
+            <li><a href="">Stricte Natione</a></li>
+            <li><a href="">Pygmaeus Quasi</a></li>
+            <li><a href="">Patiens Quos Neglexi</a></li>
+          </ul>
         </div>
-        <div class="card_text">
-          <h3>Usus lius eu mauris reclamente et sed concilia</h3>
-          <p>Electionem modestius sed faucibus dignus porta recordatio temporis veritatis at m solenniter, sunt-massa memorabilem.</p>
-          <input type="button" value="Learn more" />
-          <input type="button" value="Buy pot" />
+        <div>
+          <h3>Company</h3>
+          <ul>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Careers</a></li>
+            <li><a href="">Contact Us</a></li>
+          </ul>
         </div>
-      </div>
-      <div class="card">
-        <div class="card_media">
-          <img src="imgs/tea03.jpeg" />
-        </div>
-        <div class="card_text">
-          <h3>Quod eorum ad</h3>
-          <p>Quam usus ullo leo magnatibus gaudere ac.</p>
-          <input type="button" value="Learn more" />
-          <input type="button" value="Buy pot" />
-        </div>
-      </div>
-    </section>
+      </section>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>

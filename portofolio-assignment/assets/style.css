@@ -16,11 +16,13 @@
 
 3.0.0.0 - FOOTER 
 
-4.0.0.0 - MEDIA QUERIES 
+4.0.0.0 - PROJECT PAGES
 
-5.0.0.0 - MISC
+5.0.0.0 - MEDIA QUERIES 
 
-6.1.0.0 - CSS Animations
+6.0.0.0 - MISC
+
+7.1.0.0 - CSS Animations
 
 */
 
@@ -30,13 +32,15 @@
   --font-display: "Montserrat", sans-serif;
   --font-body: "Source Sans Pro", sans-serif;
 
-  --font-size-s: 0.8rem;
-  --font-size-m: 1rem;
-  --font-size-l: 1.3rem;
-  --font-size-xlm: 1.3rem;
-  --font-size-xl: 1.75rem;
-  --font-size-xxl: 2rem;
-  --font-size-3xl: 2.1rem;
+  --font-size-3xl: 7.594rem;
+  --font-size-2xl: 6rem;
+  --font-size-xl: 4.063rem;
+  --font-size-l: 2.5rem;
+  --font-size-m: 2.25rem;
+  --font-size-xm: 2rem;
+  --font-size-s: 1.4rem;
+  --font-size-xs: 1.2rem;
+  --font-size-2xs: 0.667rem;
 
   --col-primary: white;
   --col-secondary: black;
@@ -104,7 +108,8 @@ span {
 
 .section-top__inner__container span {
   text-transform: lowercase;
-  font-size: 0.875rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-2xs);
 }
 
 /** 2.1.0.0 - HOME **/
@@ -123,7 +128,7 @@ span {
 }
 
 .home__header h1 {
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-l);
 }
 
 /** 2.1.1.0 - NOT A ROBOT TEXT **/
@@ -131,16 +136,17 @@ span {
 .NAR--container {
   position: absolute;
   transform: rotate(25deg);
-  width: calc(var(--font-size-xl) * 4);
-  right: -5%;
-  top: 30%;
+  width: 150px;
+  right: -12%;
+  top: 35%;
   z-index: 0;
 }
 
 .NAR1,
 .NAR--container span {
   position: absolute;
-  font-size: var(--font-size-s);
+  font-size: var(--font-size-2xs);
+  font-family: var(--font-display);
   padding: 3px 10px;
 }
 
@@ -162,7 +168,8 @@ span {
 /** 2.1.2.0 - HOME SUBEADER **/
 
 .home__subheader span {
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-xs);
+  font-family: var(--font-display);
 }
 
 .home__subheader span {
@@ -226,9 +233,10 @@ span {
 }
 
 .about__inner__section p {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 300;
   max-width: 65%;
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-s);
   line-height: 1.175em;
 }
 
@@ -237,7 +245,7 @@ span {
 }
 
 .about__inner__section span {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-weight: 600;
 }
 
@@ -254,7 +262,8 @@ span {
 }
 
 .project__span {
-  font-size: var(--font-size-xl);
+  font-family: var(--font-display);
+  font-size: var(--font-size-m);
   color: var(--col-secondary);
 }
 
@@ -269,9 +278,10 @@ span {
 }
 
 .learnings__inner__section p {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 300;
   max-width: 80%;
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-s);
   line-height: 1.175em;
 }
 
@@ -281,9 +291,10 @@ span {
 }
 
 .learnings__inner__section li {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 300;
   list-style-type: decimal-leading-zero;
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-s);
   line-height: 1.175em;
   margin-bottom: 2rem;
 }
@@ -299,6 +310,10 @@ span {
   flex-direction: column;
 }
 
+.contact__inner__section h3 {
+  font-size: var(--font-size-s);
+}
+
 .contactForm {
   display: flex;
   flex-direction: column;
@@ -312,15 +327,21 @@ span {
   background-color: transparent;
   font-family: var(--font-body);
   color: var(--col-secondary);
-  font-size: var(--font-size-s);
+  font-size: var(--font-size-xs);
   border-bottom: 1px solid var(--col-secondary);
   border-left: 1px solid var(--col-secondary);
   padding: 5px 0 5px 5px;
   margin-bottom: 30px;
 }
 
+.contactForm input,
+.contactForm select {
+  max-width: 600px;
+}
+
 .contact__textField {
   min-height: 200px;
+  max-width: 1000px;
 }
 .contact__submit__container {
   position: relative;
@@ -373,7 +394,7 @@ span {
 }
 
 .social__span {
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-m);
   color: var(--col-secondary);
 }
 
@@ -388,97 +409,174 @@ footer {
 footer p {
   text-align: center;
   text-transform: lowercase;
-  font-size: 0.875rem;
+  font-size: var(--font-size-2xs);
 }
 
-/*** 4.0.0.0 - MEDIA QUERIES ***/
+.project-page__footer {
+  background-color: var(--col-primary);
+}
+
+/*** 4.0.0.0 - PROJECT PAGES ***/
+
+.project-page__back {
+  color: var(--col-secondary);
+}
+
+.project-page__inner__section {
+  height: calc(100svh - 43px);
+  width: calc(100svw - 50px);
+  margin-inline: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-grid_1-1  {
+  max-width: 100svw;
+}
+
+.project-grid_1 img {
+  width: 100%;
+  height: auto;
+}
+
+.project-grid_1 a {
+  color: var(--col-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-family: var(--font-display);
+}
+
+.project-grid_1 a:hover {
+  text-decoration: none;
+}
+
+.project-grid_2 h2 {
+  margin-top: 0;
+}
+.project-grid_2 p {
+  max-width: 60ch;
+}
+
+.project-grid_2 a {
+  color: var(--col-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.project-grid_2 a:hover {
+  text-decoration: none;
+}
+
+/*** 5.0.0.0 - MEDIA QUERIES ***/
+
+@media screen and (width < 417px) {
+  .home__header {
+    padding-inline: 30px;
+  }
+  .home__header h1 {
+    font-size: var(--font-size-m);
+  }
+}
 
 @media screen and (width >= 450px) {
-  * {
-    --font-size-s: 1rem;
-    --font-size-l: 1.5rem;
-    --font-size-xlm: 1.75rem;
-    --font-size-xl: 2rem;
-    --font-size-3xl: 2.7rem;
-  }
-
   .NAR--container {
-    width: calc(var(--font-size-xl) * 5);
-    right: -8%;
-    top: 28%;
+    right: -12%;
+    top: 35%;
   }
 }
 
 @media screen and (width > 670px) {
-  * {
-    --font-size-s: 1.3rem;
-    --font-size-l: 1.75rem;
-    --font-size-xlm: 2rem;
-    --font-size-xl: 2.5rem;
-    --font-size-3xl: 3.2rem;
+  .home__header h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  .NAR1,
+  .NAR--container span {
+    position: absolute;
+    font-size: var(--font-size-xs);
+    padding: 3px 10px;
   }
 
   .NAR--container {
-    width: calc(var(--font-size-xl) * 5);
-    right: -15%;
+    width: calc(var(--font-size-m) * 5);
+    right: -8%;
     top: 32%;
+  }
+
+  .home__subheader span {
+    font-size: var(--font-size-m);
+  }
+
+  .project__span,
+  .social__span {
+    font-size: var(--font-size-l);
   }
 }
 
 @media screen and (width > 900px) {
-  * {
-    --font-size-s: 1.5rem;
-    --font-size-l: 2rem;
-    --font-size-xlm: 2.5rem;
-    --font-size-xl: 2.8rem;
-    --font-size-3xl: 3.7rem;
+  .project__span,
+  .social__span {
+    font-size: var(--font-size-l);
   }
 
-  .NAR--container {
-    width: calc(var(--font-size-xl) * 5);
-    right: -15%;
-    top: 32%;
+  .about__inner__section p,
+  .learnings__inner__section p,
+  .learnings__inner__section li {
+    font-size: var(--font-size-xm);
+    line-height: 1.175em;
+  }
+
+  .contact__inner__section h3 {
+    font-size: var(--font-size-xm);
   }
 }
 
 @media screen and (width > 1100px) {
-  * {
-    --font-size-s: 1.75rem;
-    --font-size-l: 2.5rem;
-    --font-size-xlm: 2.8rem;
-    --font-size-xl: 3.2rem;
-    --font-size-3xl: 5rem;
+  .home__header h1 {
+    font-size: var(--font-size-2xl);
   }
 
   .NAR--container {
     width: calc(var(--font-size-xl) * 5);
-    right: -12%;
-    top: 32%;
+    right: -20%;
+    top: 47%;
   }
 
   .learnings__inner__section,
   .about__inner__section {
     padding-inline-start: var(--font-size-l);
   }
+
+  .project-grid_1-1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .project-grid_2 {
+    overflow-y: scroll;
+    height: 70svh;
+    margin-top: 0;
+  }
 }
 
 @media screen and (width > 1500px) {
-  * {
-    --font-size-3xl: 7rem;
+  .home__header h1 {
+    font-size: var(--font-size-3xl);
   }
 
   .NAR--container {
-    width: calc(var(--font-size-xl) * 5);
-    right: -10%;
-    top: 38%;
+    right: -18%;
+    top: 50%;
   }
 }
 
-/*** 5.0.0.0. - MISC ***/
+/*** 6.0.0.0. - MISC ***/
 
-/*** 6.0.0.0. - CSS ANIMATIONS ***/
+/*** 7.0.0.0. - CSS ANIMATIONS ***/
 
-/** 6.1.0.0 - FLICKER ANIMATION **/
+/** 7.1.0.0 - FLICKER ANIMATION **/
 @-webkit-keyframes text-flicker {
   0% {
     opacity: 1;
@@ -736,7 +834,7 @@ footer p {
   }
 }
 
-/*** 6.2.0.0. - HIDDEN ***/
+/*** 7.2.0.0. - HIDDEN ***/
 
 .hidden {
   display: none;

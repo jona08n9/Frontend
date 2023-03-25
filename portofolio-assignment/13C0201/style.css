@@ -1,126 +1,445 @@
-/*** GLOBAL ***/
-
-body {
-  margin: 0;
-}
-
-li {
-  text-decoration: none;
+/* Tip, copy paste from 13c.01.01 & 13c.01.02 to get fonts and colors up and running ... */
+/* Resetter */
+* {
+  margin: 0px;
+  padding: 0px;
   list-style: none;
 }
 
-header,
+:root {
+  --font-display: "Montserrat", sans-serif;
+  --font-body: "Source Sans Pro", sans-serif;
+
+  --font-size-3xl: 7.594rem;
+  --font-size-2xl: 6rem;
+  --font-size-xl: 4.063rem;
+  --font-size-l: 2.5rem;
+  --font-size-m: 2.25rem;
+  --font-size-xm: 2rem;
+  --font-size-s: 1.4rem;
+  --font-size-xs: 1.2rem;
+  --font-size-2xs: 0.667rem;
+
+  --color-primary1: #f5f5f5;
+  --color-primary2: #f5f5f5;
+  --color-secondary1: #0a0a0a;
+  --color-secondary2: #0a0a0a;
+  --color-accent1: #99ddff;
+  --color-accent2: #ff9999;
+  --color-accent3: #99ff9b;
+}
+
+html[data-theme="dark"] {
+  --color-primary1: #0a0a0a;
+  --color-primary2: #f5f5f5;
+  --color-secondary1: #3a3939;
+  --color-secondary2: #f5f5f5;
+  --color-accent3: #99ddff;
+  --color-accent2: #ff9999;
+  --color-accent1: #99ff9b;
+}
+
+/* COLOR % */
+h1,
+h2,
+h3 h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  margin-bottom: 1rem;
+  color: var(--color-secondary2);
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+h1 {
+  color: var(--color-primary1);
+  font-size: 3.052rem;
+  line-height: 3.5rem;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 1.953rem;
+  line-height: 2rem;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-secondary2);
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-secondary2);
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+button {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.3rem 0.5rem;
+  border: none;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--color-accent1);
+  color: var(--color-secondary1);
+  transition: color 0.3s ease, background-color 0.3s ease;
+  font-family: var(--font-display);
+}
+
+.dark_button {
+  background-color: var(--color-accent2);
+}
+
+input,
+textarea {
+  box-sizing: border-box;
+  max-width: 250px;
+  max-height: 3rem;
+  padding: 1rem 1rem;
+  font-size: 1rem;
+  text-align: left;
+  background-color: var(--color-primary2);
+  border-color: var(--color-primary2);
+  color: var(--color-secondary1);
+  transition: color 0.3s ease, background-color 0.3s ease;
+  font-family: var(--font-body);
+}
+
+textarea {
+  max-width: 350px;
+  max-height: 5rem;
+}
+
 body > section {
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
 }
 
-section {
-  padding-inline: 7rem;
-}
-
-/** HEADER **/
+/*** NAV ***/
 nav {
-  border-bottom: 1px solid grey;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+  height: 4rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--color-secondary1);
+}
+
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  grid-column: 1/3;
+  grid-row: 2/3;
+  place-self: center;
+}
+
+nav a {
+  place-self: center;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  color: var(--color-primary2);
+  font-family: var(--font-display);
+}
+
+nav button {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  place-self: center;
+}
+
+/*** HEADER ***/
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+  min-height: 60vh;
+  padding: 2rem;
+  background-image: url("imgs/pexels-burak-evlivan-11069896.jpg");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  backdrop-filter: grayscale(50%);
+}
+
+header p {
+  color: var(--color-primary1);
+}
+
+header button {
+  box-shadow: 1px 1px 5px var(--color-secondary1);
+}
+
+.header_graphics {
+  background-image: url("imgs/pexels-anna-tukhfatullina-food-photographerstylist-2616175.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  max-width: 200px;
+  aspect-ratio: 684 / 971;
+  border: 2px solid var(--color-primary1);
+}
+
+/*** ADVANTAGES ***/
+
+#advantages {
+  padding: 2rem;
+}
+
+.advantages_cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.advantages_card {
+  border: 1px solid var(--color-secondary1);
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.advantages_card_text {
+  padding: 0.5rem 0.75rem;
+}
+
+.advantages_card_graphics {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+
+.advantages_card:nth-child(1) .advantages_card_graphics {
+  background-image: url("imgs/pexels-masud-allahverdiyev-15934190.jpg");
+}
+.advantages_card:nth-child(2) .advantages_card_graphics {
+  background-image: url("imgs/pexels-anna-tukhfatullina-food-photographerstylist-2616175.jpg");
+}
+.advantages_card:nth-child(3) .advantages_card_graphics {
+  background-image: url("imgs/pexels-luana-freitas-15961957.jpg");
+}
+.advantages_card:nth-child(4) .advantages_card_graphics {
+  background-image: url("imgs/pexels-senanur-ulusoy-15924270.jpg");
+}
+.advantages_card:nth-child(5) .advantages_card_graphics {
+  background-image: url("imgs/pexels-владимир-высоцкий-15957812.jpg");
+}
+
+/*** PRODUCTS ***/
+
+#product {
+  background-color: var(--color-secondary2);
+  padding: 2rem 2rem;
+}
+
+#product h2,
+#product h3,
+#product p {
+  color: var(--color-primary2);
+}
+
+.product_graphics {
+  background-image: url("imgs/pexels-cottonbro-studio-4787602.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  min-height: 200px;
+  margin-bottom: 2rem;
+}
+
+.highlight {
+  padding: 2rem;
+}
+
+.highlight_small_cards {
+  display: flex;
+  gap: 1rem;
+}
+
+.highlight_small_cards div {
+  border: 1px solid var(--color-secondary1);
+  padding: 1rem 0.5rem;
+  display: inline-block;
+  width: 175px;
+}
+.highlight button {
+  margin-top: 2rem;
+}
+
+/*** TEAM ***/
+
+#team {
+  padding: 2rem;
+}
+
+.team__inner__section > article {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 500px;
+  border: 1px solid var(--color-secondary2);
+  margin-bottom: 1rem;
+  height: 400px;
+}
+
+.team_graphics {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+
+.team__inner__section > article:first-child .team_graphics {
+  background-image: url("imgs/pexels-pixabay-220453.jpg");
+}
+.team__inner__section > article:last-child .team_graphics {
+  background-image: url("imgs/pexels-andrea-piacquadio-774909.jpg");
+  order: 2;
+}
+
+.team_text {
+  padding: 0.5rem;
+}
+
+/*** CONTACT ***/
+
+#contact {
+  padding: 2rem;
+  background-color: var(--color-secondary2);
+}
+
+#contact h2,
+#contact p,
+#contact label {
+  color: var(--color-primary2);
+}
+
+#contact_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+}
+
+/*** FOOTER ***/
+
+footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 7rem;
+  padding: 0.5rem 1rem;
 }
 
-header ul {
-  display: flex;
-  flex-direction: row;
-  column-gap: 40px;
-}
-
-nav input {
-  padding: 0.4rem 2rem;
-  text-transform: uppercase;
-  color: white;
-  background-color: orangered;
-  border: none;
-  border-radius: 5px;
-}
-
-header section {
-  margin-top: 5rem;
-  text-align: center;
-}
-
-/** #selection **/
-
-#selection form {
-  display: flex;
-  flex-direction: row;
-}
-
-#selection fieldset {
+footer section {
   display: flex;
   flex-direction: column;
-  height: fit-content;
-}
-#selection fieldset:last-child {
-  flex-direction: column;
+  gap: 1rem;
 }
 
-#selection fieldset legend {
-  float: left;
-}
-#selection fieldset:first-child input,
-#selection fieldset:last-child input {
-  opacity: 0;
+footer h3 {
+  margin-bottom: 1rem;
 }
 
-#selection fieldset:first-child label {
-  position: relative;
-  display: flex;
-  column-gap: 20px;
+/*** MEDIA Q ***/
+@media screen and (width > 600px) {
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
-#selection fieldset:first-child label span {
-  position: absolute;
-  inset: 0 0 0 0;
-  height: 15px;
-  width: 30px;
-  border: 1px solid black;
-  background-color: white;
-  z-index: 1;
-  pointer-events: none;
-  border-radius: 50px;
-  transition: all 0.4s ease;
-  -webkit-transition: all 0.4s ease;
+@media screen and (width > 684px) {
+  .advantages_cards {
+    justify-content: left;
+  }
+
+  .advantages_card {
+    max-width: 300px;
+  }
 }
 
-#selection fieldset:first-child label span::before {
-  content: "";
-  position: absolute;
-  z-index: 3;
-  top: 1px;
-  left: 1px;
-  width: 13px;
-  height: 13px;
-  background-color: orangered;
-  border-radius: 50%;
-  transition: all 0.4s ease;
-  -webkit-transition: all 0.4s ease;
+@media screen and (width > 768px) {
+  header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header_text {
+    grid-column: 1/2;
+  }
+  .header_graphics {
+    grid-column: 2/3;
+    width: 100%;
+    max-width: 300px;
+    margin-left: 4rem;
+  }
+
+  .product__inner__section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .product_graphics {
+    margin-bottom: 0;
+  }
+
+  .highlight_small_cards {
+    flex-direction: row;
+  }
+
+  .team__inner__section {
+    display: flex;
+    gap: 1rem;
+  }
+
+  footer section {
+    flex-direction: row;
+  }
 }
 
-#selection fieldset:first-child label span.active::before {
-  transform: translateX(15px);
-  -webkit-transform: translateX(15px);
-  -ms-transform: translateX(15px);
+@media screen and (width > 1000px) {
+  .header_graphics {
+    max-width: 400px;
+  }
 }
 
-/* #selection fieldset:last-child label input[type="radio"]:checked:after {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  top: -2px;
-  left: -1px;
-  position: absolute;
-  background-color: orangered;
-  content: "";
-  display: inline-block;
-  visibility: visible;
-  z-index: 5;
-} */
+#backToProject {
+  position: fixed;
+  z-index: 50;
+  border: 2px solid black;
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 5px black;
+  top: 4rem;
+  left: 0.3rem;
+  padding: 0.2rem;
+}
+
+#backToProject a {
+  text-decoration: none;
+}
+
+#backToProject:hover {
+  cursor: pointer;
+}

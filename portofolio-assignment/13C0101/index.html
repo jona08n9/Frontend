@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="backToProject">
+      <a href="../subpages/project13c0101.html"><p>&#8592; Go back to <br>project page</p></a>
+    </div>
     <nav>
       <a href="index.html">Logo</a>
       <button type="button" class="light_button">Learn More &#x2794;</button>
@@ -96,12 +99,16 @@
   <template id="card_template">
     <div class="card">
       <img class="card_image" />
-      <h3 class="card_name"></h3>
-      <p class="card_slogan"></p>
-      <p class="card_title"></p>
-      <p class="card_mail"></p>
-      <input type="button" value="Remove" class="card_button_negative"/>
-      <input type="button" value="Accept" class="card_button_positive"/>
+      <div class="card_text_container">
+        <h3 class="card_name"></h3>
+        <p class="card_slogan"></p>
+        <p class="card_title"></p>
+        <p class="card_mail"></p>
+        <div class="input_container">
+          <input type="button" value="Remove" class="card_button_negative"/>
+          <input type="button" value="Accept" class="card_button_positive"/>
+        </div>
+      </div>
     </div>
   </template>
 </html>
