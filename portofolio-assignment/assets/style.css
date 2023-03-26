@@ -48,6 +48,11 @@
   --col-accent2: hsl(0, 100%, 80%);
   --col-accent3: hsl(121, 100%, 80%);
 
+  /* MARQUEE VAR */
+  --offset: 20vw;
+  --move-initial: calc(-25% + var(--offset));
+  --move-final: calc(-50% + var(--offset));
+
   scroll-behavior: smooth;
 }
 
@@ -206,6 +211,9 @@ span {
 .home__subheader span::before {
   transform: scaleX(0);
   transform-origin: bottom right;
+  animation-duration: 1.3s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
 }
 
 .home__subheader span:hover::before {
@@ -215,10 +223,14 @@ span {
 
 .home__subheader a:first-child span::before {
   background: var(--col-accent1);
+  animation-name: colorBg1;
+  animation-delay: 0.6s;
 }
 
 .home__subheader a:last-child span::before {
   background: var(--col-accent2);
+  animation-name: colorBg2;
+  animation-delay: 1.2s;
 }
 
 /*** 2.2.0.0 - ABOUT ***/
@@ -253,18 +265,46 @@ span {
 
 .projects__inner__section {
   padding: 30px 20px;
+  position: relative;
 }
 
-.projects__inner__section p {
-  border-bottom: 1px solid var(--col-secondary);
-  padding: 0 0 5px 5px;
-  margin-bottom: 40px;
-}
-
-.project__span {
+.project__container a {
   font-family: var(--font-display);
   font-size: var(--font-size-m);
   color: var(--col-secondary);
+}
+
+/** MARQEE EFEECT - https://tympanus.net/codrops/2020/03/31/css-only-marquee-effect/ **/
+
+.project__container {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid black;
+  padding-top: 2rem;
+  background-color: transparent;
+}
+
+.project__container img {
+  position: absolute;
+  top: 37vh;
+  right: 5vw;
+  transform: rotate(8deg);
+  width: 340px;
+  z-index: -1;
+  opacity: 0;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+  animation-duration: 0.4s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
 /*** 2.4.0.0 - LEARNINGS ***/
@@ -468,6 +508,10 @@ footer p {
   text-decoration: none;
 }
 
+.mocup-images img {
+  max-width: 300px;
+}
+
 /*** 5.0.0.0 - MEDIA QUERIES ***/
 
 @media screen and (width < 417px) {
@@ -484,8 +528,23 @@ footer p {
     right: -12%;
     top: 35%;
   }
+
+  .project__container img {
+    position: absolute;
+    top: 35vh;
+    right: 6vw;
+    width: 400px;
+  }
 }
 
+@media screen and (width > 525px) {
+  .project__container img {
+    position: absolute;
+    top: 40vh;
+    right: 7vw;
+    width: 450px;
+  }
+}
 @media screen and (width > 670px) {
   .home__header h1 {
     font-size: var(--font-size-xl);
@@ -508,14 +567,22 @@ footer p {
     font-size: var(--font-size-m);
   }
 
-  .project__span,
+  .link_container a,
   .social__span {
     font-size: var(--font-size-l);
+  }
+
+  .project__container img {
+    position: absolute;
+    top: 40vh;
+    right: 4vw;
+    transform: rotate(8deg);
+    width: 600px;
   }
 }
 
 @media screen and (width > 900px) {
-  .project__span,
+  .link_container a,
   .social__span {
     font-size: var(--font-size-l);
   }
@@ -529,6 +596,13 @@ footer p {
 
   .contact__inner__section h3 {
     font-size: var(--font-size-xm);
+  }
+
+  .project__container img {
+    position: absolute;
+    top: 37vh;
+    right: 7vw;
+    width: 700px;
   }
 }
 
@@ -559,6 +633,18 @@ footer p {
     height: 70svh;
     margin-top: 0;
   }
+
+  .project__container img {
+    right: 10vw;
+    width: 900px;
+  }
+
+  .mocup-images {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
 }
 
 @media screen and (width > 1500px) {
@@ -569,6 +655,12 @@ footer p {
   .NAR--container {
     right: -18%;
     top: 50%;
+  }
+
+  .project__container img {
+    top: 20vh;
+    right: 10vw;
+    width: 1000px;
   }
 }
 
@@ -831,6 +923,67 @@ footer p {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes colorBg1 {
+  0% {
+    background: hsl(200 100% 80%);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  30% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  60% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  100% {
+    background: hsl(200 100% 80%);
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+@keyframes colorBg2 {
+  0% {
+    background: hsl(0, 100%, 80%);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  30% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  60% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  100% {
+    background: hsl(0, 100%, 80%);
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 
