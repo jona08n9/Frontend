@@ -1,13 +1,15 @@
 "use strict";
+
+import { API_KEY, ENDPOINT } from "./modules/config.js";
 document.querySelector("#post").addEventListener("click", post);
 
 get();
 
 function get() {
-  fetch("https://ponkzfmbqesqbziteamo.supabase.co/rest/v1/wines", {
-    method: "get",
+  fetch(ENDPOINT, {
+    method: "GET",
     headers: {
-      apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvbmt6Zm1icWVzcWJ6aXRlYW1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzk5MTkzNTUsImV4cCI6MTk5NTQ5NTM1NX0.RSWdmnxCnrTGNGgdaILP3EqzoTOL3DaKz45hlaXqYq4",
+      apikey: API_KEY,
     },
   })
     .then((e) => e.json())
@@ -40,12 +42,12 @@ function post() {
     },
     isGood: false,
   };
-  fetch("https://ponkzfmbqesqbziteamo.supabase.co/rest/v1/wines", {
+  fetch(ENDPOINT, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
       Prefer: "return=representation",
-      apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvbmt6Zm1icWVzcWJ6aXRlYW1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzk5MTkzNTUsImV4cCI6MTk5NTQ5NTM1NX0.RSWdmnxCnrTGNGgdaILP3EqzoTOL3DaKz45hlaXqYq4",
+      apikey: API_KEY,
     },
     body: JSON.stringify(newWine),
   })
@@ -54,12 +56,12 @@ function post() {
 }
 
 function deleteWine(id) {
-  fetch("https://ponkzfmbqesqbziteamo.supabase.co/rest/v1/wines?id=eq." + id, {
-    method: "delete",
+  fetch(`${ENDPOINT}?id=eq.${id}`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Prefer: "return=representation",
-      apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvbmt6Zm1icWVzcWJ6aXRlYW1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzk5MTkzNTUsImV4cCI6MTk5NTQ5NTM1NX0.RSWdmnxCnrTGNGgdaILP3EqzoTOL3DaKz45hlaXqYq4",
+      apikey: API_KEY,
     },
   })
     .then((e) => e.json())
@@ -72,11 +74,12 @@ function patch(id) {
     isGood: true,
   };
 
-  fetch("https://ponkzfmbqesqbziteamo.supabase.co/rest/v1/wines?id=eq." + id, {
+  fetch(`${ENDPOINT}?id=eq.${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvbmt6Zm1icWVzcWJ6aXRlYW1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzk5MTkzNTUsImV4cCI6MTk5NTQ5NTM1NX0.RSWdmnxCnrTGNGgdaILP3EqzoTOL3DaKz45hlaXqYq4",
+      Prefer: "return=representation",
+      apikey: API_KEY,
     },
     body: JSON.stringify(updates),
   })

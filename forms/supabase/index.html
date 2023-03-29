@@ -4,16 +4,83 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
     <title>SupaBase test</title>
   </head>
   <body>
-    <button id="post">POST</button>
+    <h1> Wines</h1>
+    <div class="content__inner__section">
     <main></main>
+    <div class="sidebar">
+      <h3>Add new wine!</h3>
+      <form>
+        <div class="input-container">
+          <label for="name">Wine name</label>
+          <input type="text" name="name" id="input--name" placeholder="Wine name"></input>
+        </div>
+        <div class="input-container">
+          <label for="grapes">Grapes</label>
+          <input type="text" name="grapes" id="input--grapes" placeholder="Grape variety"></input>
+        </div>
+        <div class="input-container winetype">
+          <p>Wine type</p>
+          <div>
+          <div>
+            <label for="red">Red</label>
+            <input type="radio" name="type" id="input--type-red" value="red">
+          </div>
+          <div>
+            <label for="white">White</label>
+            <input type="radio" name="type" id="input--type-white" value="white">
+          </div>
+          <div>
+            <label for="rose">Rosé</label>
+            <input type="radio" name="type" id="input--type-rose" value="rose">
+          </div>
+          <div>
+            <label for="orange">Orange</label>
+            <input type="radio" name="type" id="input--type-rose" value="orange">
+          </div>
+          </div>
+        </div>
+        <div class="input-container">
+            <label for="country">Country</label>
+            <select name="country" id="input--country">
+              <option value="null" disabled hidden>Please choose a country</option>
+              <option value="austria">Austria</option>
+              <option value="denmark">Denmark</option>
+              <option value="france">France</option>
+              <option value="germany">Germany</option>
+              <option value="hungary">Hungary</option>
+              <option value="italy">Italy</option>
+              <option value="portugal">Portugal</option>
+              <option value="spain">Spain</option>
+              <option value="usa">USA</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <label for="year">Year</label>
+            <input type="number" name="year" id="input--year" min="4" max="4">
+        </div>
+        <div class="input-container good">
+          <p>Is the wine good?</p>
+          <div>
+            <input type="radio" name="isgood" id="input--good-yes" value="true">YES!</input>
+            <input type="radio" name="isgood" id="input--good-no" value="false">Not really</input>
+          </div>
+        </div>
+        <button id="post">post wine</button>
+      </form>
+    </div>
+    </div>
     <template>
-      <h2></h2>
-      <button class="delete">Delete</button>
-      <button class="update">update</button>
+      <div>
+        <h2></h2>
+        <button class="delete">Delete</button>
+        <button class="update">update</button>
+      </div>
     </template>
-    <script src="script.js"></script>
+    <script type="module" src="modules/config.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
