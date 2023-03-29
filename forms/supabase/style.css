@@ -4,6 +4,7 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
+  order: 2;
 }
 
 main div {
@@ -62,7 +63,7 @@ input:invalid {
   background-color: rgb(239, 182, 182);
 }
 
-@media screen and (width > 668px) {
+@media screen and (width > 550px) {
   .content__inner__section {
     display: flex;
     flex-direction: row;

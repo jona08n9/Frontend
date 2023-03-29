@@ -7,7 +7,7 @@ get();
 
 function get() {
   fetch(ENDPOINT, {
-    method: "GET",
+    method: "get",
     headers: {
       apikey: API_KEY,
     },
@@ -57,7 +57,7 @@ function post() {
 
 function deleteWine(id) {
   fetch(`${ENDPOINT}?id=eq.${id}`, {
-    method: "DELETE",
+    method: "delete",
     headers: {
       "Content-Type": "application/json",
       Prefer: "return=representation",
