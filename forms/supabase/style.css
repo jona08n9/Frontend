@@ -1,13 +1,125 @@
+/* GENEREL STYLING */
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+select {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+select {
+  background-color: transparent;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: max(16px, 1em);
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+main button {
+  border: 1px solid black;
+}
+
+button {
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+  width: fit-content;
+}
+
+.template--buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  appearance: none;
+  background: transparent;
+}
+
+small {
+  opacity: 0;
+}
+
+:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: -2px;
+  box-shadow: 0 0 0 2px #fff, inset 0 0 0 3px #fff;
+}
+
+.sidebar input:invalid:not(:placeholder-shown, :focus) {
+  border-color: #f69292;
+  box-shadow: 0 0 0 1px #f69292;
+  color: #f69292;
+  animation: shake 0.175s backwards;
+}
+
+.sidebar input:invalid:not(:placeholder-shown, :focus) ~ small {
+  opacity: 1;
+}
+
+input:focus {
+  border-color: rgb(91, 91, 247);
+}
+
+.sidebar input:valid:not(:placeholder-shown, :focus) {
+  border-color: rgb(78, 137, 78);
+  color: rgb(78, 137, 78);
+}
+
+form,
+div {
+  display: grid;
+  gap: max(16px, 1rem);
+}
+
+div:has([type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+}
+fieldset legend {
+  margin-bottom: 0.375rem;
+}
+
+fieldset section {
+  display: grid;
+  grid: auto / auto 1fr;
+  place-items: center start;
+  gap: 0.5rem 0.75rem;
+}
+
+/* CONTENT */
+
 main {
   height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
-  order: 2;
+  text-align: center;
 }
 
-main div {
+main > div {
   padding: 1rem 2rem;
   border: 1px solid black;
 }
@@ -17,56 +129,27 @@ main div {
 .sidebar {
   padding: 1rem;
   border: 1px solid black;
-  min-width: 300px;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  height: fit-content;
 }
 
 .sidebar form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: grid;
+  gap: 0.875rem;
 }
 
 .input-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.input-container.winetype {
-  flex-direction: column;
-}
-
-.input-container.winetype p {
-  margin-bottom: 0.25rem;
-}
-
-.input-container.winetype > div {
-  display: flex;
-  justify-content: space-between;
-}
-
-.input-container.winetype > div > div {
-  border-right: 1px solid black;
-  padding-inline: 5px;
-}
-.input-container.winetype > div > div:last-child {
-  border-right: none;
-}
-
-input:valid {
-  background-color: rgb(182, 239, 182);
-}
-input:invalid {
-  background-color: rgb(239, 182, 182);
+  display: grid;
+  gap: 0.285rem;
 }
 
 @media screen and (width > 550px) {
   .content__inner__section {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 
   main {

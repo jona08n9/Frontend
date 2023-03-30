@@ -70,7 +70,7 @@ function deleteWine(id) {
 
 function patch(id) {
   const updates = {
-    name: "Lasses Wine",
+    name: "Frederiks Wine",
     isGood: true,
   };
 

@@ -4,49 +4,45 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>SupaBase test</title>
   </head>
   <body>
     <h1> Wines</h1>
     <div class="content__inner__section">
-    <main></main>
-    <div class="sidebar">
+      <div class="sidebar">
       <h3>Add new wine!</h3>
       <form>
         <div class="input-container">
           <label for="name">Wine name</label>
-          <input type="text" name="name" id="input--name" placeholder="Wine name"></input>
+          <input type="text" name="name" id="input--name" aria-required="true" placeholder="Name of wine" required></input>
+          <small class="error-message" id="input--name-error" aria-live="polite">Please fill out the name.</small>
         </div>
         <div class="input-container">
           <label for="grapes">Grapes</label>
-          <input type="text" name="grapes" id="input--grapes" placeholder="Grape variety"></input>
+          <input type="text" name="grapes" id="input--grapes" aria-required="true" placeholder="Grape varieties" required></input>
         </div>
-        <div class="input-container winetype">
-          <p>Wine type</p>
-          <div>
-          <div>
-            <label for="red">Red</label>
-            <input type="radio" name="type" id="input--type-red" value="red">
-          </div>
-          <div>
-            <label for="white">White</label>
+        <div class="input-container">
+         <fieldset>
+          <legend>Wine type</legend>
+          <section>
+            <input type="radio" name="type" id="input--type-red" value="red" aria-required="true" checked required>
+            <label for="input--type-red">Red</label>
             <input type="radio" name="type" id="input--type-white" value="white">
-          </div>
-          <div>
-            <label for="rose">Rosé</label>
+            <label for="input--type-white">White</label>
             <input type="radio" name="type" id="input--type-rose" value="rose">
-          </div>
-          <div>
-            <label for="orange">Orange</label>
-            <input type="radio" name="type" id="input--type-rose" value="orange">
-          </div>
-          </div>
+            <label for="input--type-rose">Rosé</label>
+            <input type="radio" name="type" id="input--type-orange" value="orange">
+            <label for="input--type-orange">Orange</label>
+         </fieldset>
         </div>
         <div class="input-container">
             <label for="country">Country</label>
-            <select name="country" id="input--country">
-              <option value="null" disabled hidden>Please choose a country</option>
+            <select name="country" id="input--country" aria-required="true" required>
+              <option value="" hidden>Please choose a country</option>
               <option value="austria">Austria</option>
               <option value="denmark">Denmark</option>
               <option value="france">France</option>
@@ -60,24 +56,28 @@
         </div>
         <div class="input-container">
             <label for="year">Year</label>
-            <input type="number" name="year" id="input--year" min="4" max="4">
+            <input type="number" name="year" id="input--year" min="4" max="4" aria-required="true" placeholder="Year" required>
         </div>
-        <div class="input-container good">
-          <p>Is the wine good?</p>
-          <div>
-            <input type="radio" name="isgood" id="input--good-yes" value="true">YES!</input>
-            <input type="radio" name="isgood" id="input--good-no" value="false">Not really</input>
-          </div>
-        </div>
-        <button id="post">post wine</button>
+        <fieldset>
+          <legend>Is the wine good?</legend>
+          <section>
+            <input type="radio" id="isgood" name="goodorbad" aria-required="true" checked required ></input>
+            <label for="isgood">Yes!</label>
+            <input type="radio" id="notgood" name="goodorbad"></input>
+            <label for="notgood">Not really</label>
+        </fieldset>        
       </form>
-    </div>
+      <button id="post">Post wine</button>
+      </div>
+      <main></main>
     </div>
     <template>
       <div>
-        <h2></h2>
-        <button class="delete">Delete</button>
-        <button class="update">update</button>
+        <h2>Name</h2>
+        <div class="template--buttons">
+          <button class="delete">Delete</button>
+          <button class="update">Update</button>
+        </div>
       </div>
     </template>
     <script type="module" src="modules/config.js"></script>
