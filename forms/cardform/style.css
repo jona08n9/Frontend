@@ -1,0 +1,8 @@
+form {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: auto 100px;
+  gap: 0.5rem;
+  border: 1px solid black;
+  padding: 0.5rem 0.8rem;
+}

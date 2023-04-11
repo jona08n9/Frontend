@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "country-region-data": "^2.7.0"
+  }
+}
