@@ -1,0 +1,57 @@
+#root {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  max-width: 900px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75em 1.5em;
+  margin-inline: auto;
+}
+
+.logo img {
+  height: 40px;
+  width: 40px;
+}
+
+header ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+header ul li {
+  list-style: none;
+  padding: 0 10px;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.hero_container {
+  height: 70vh;
+  padding: 2em 4em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+}
+
+.hero_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero_container img {
+  width: 100%;
+  max-height: 500px;
+}
