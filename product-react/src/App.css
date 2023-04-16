@@ -1,0 +1,33 @@
+.beforeDiscountPrice {
+  text-decoration: line-through;
+}
+
+.productContainer_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.3em;
+}
+.productContainer_grid ul {
+  padding: 0;
+  margin: 0;
+}
+
+.productContainer {
+  padding: 0.5em;
+  border: 1px solid black;
+  margin: 0.5em;
+  list-style: none;
+}
+
+.productContainer li {
+  list-style: none;
+}
+
+ul:has(.productContainer) {
+  margin: 0;
+  padding: 0;
+}
+
+.identifier {
+  font-weight: 700;
+}
