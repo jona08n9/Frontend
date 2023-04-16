@@ -1,5 +1,7 @@
+import Discount from "./Discount";
+
 export default function SingleProduct(props) {
-  console.log(props.art, "hello");
+  // console.log(props.art, "SingleProduct.jsx");
   return (
     <li className="productContainer">
       <h2>{props.art.productdisplayname}</h2>
@@ -31,10 +33,9 @@ export default function SingleProduct(props) {
         <li>
           <span className="identifier">Usagetype:</span> <span>{props.art.usagetype}</span>
         </li>
-        <li>
-          <span className="identifier">Price:</span> <span>{props.art.price} ,-</span>
-        </li>
+        <Discount art={props.art} />
       </ul>
+      <button onClick={() => props.addProduct(props.art)}>Add to basket</button>
     </li>
   );
 }

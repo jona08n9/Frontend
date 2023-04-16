@@ -1,10 +1,16 @@
+.App {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1em;
+}
+
 .beforeDiscountPrice {
   text-decoration: line-through;
 }
 
 .productContainer_grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 0.3em;
 }
 .productContainer_grid ul {
@@ -30,4 +36,9 @@ ul:has(.productContainer) {
 
 .identifier {
   font-weight: 700;
+}
+
+.sidebar {
+  border: 1px solid black;
+  padding: 1em;
 }

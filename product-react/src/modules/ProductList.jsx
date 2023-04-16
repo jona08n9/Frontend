@@ -5,7 +5,7 @@ export default function ProductList(props) {
   return (
     <ul className="productContainer_grid">
       {props.articles.map((art) => (
-        <SingleProduct art={{ ...art }} />
+        <SingleProduct art={{ ...art }} addProduct={props.addProduct} />
       ))}
     </ul>
   );
