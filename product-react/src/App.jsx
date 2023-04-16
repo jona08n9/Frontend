@@ -44,7 +44,7 @@ function App() {
             <ProductList articles={articles} addProduct={addProduct} />
           </section>
           <section className="sidebar">
-            <SideBar basket={basket} clearBasket={clearBasket} />
+            <SideBar basket={basket} clearBasket={clearBasket} removeProduct={removeProduct} />
           </section>
         </div>
       )}
